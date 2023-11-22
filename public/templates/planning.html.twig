@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon"  href="public/img/favicon.ico" />
+        <title>planning.recode</title>
+        <link rel="stylesheet" href="public/css/planning.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
+        <script type="text/javascript" src="public/js/planning.js"></script>
+    </head>
+    <body style="">
+        <nav class="navbar bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">PLANNING RECODE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">MENU</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Planning</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Demandes d'absences</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Mes demandes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main  role="main" class="container-fluid mt-5 col-11 container-body">
+            <div class="d-flex" id="global-wrapper">
+                <input type="hidden" id="planning" value="{{planning}}">
+                <div id="calendar-container">
+                    <div id="info" class="info d-flex justify-content-between"> 
+                        <div class="color-container-cp">
+                            Congés
+                        </div>
+                        <div class="color-container-medic">
+                            Medical
+                        </div>
+                        <div class="color-container-perso">
+                            Perso
+                        </div>
+                        <div class="color-container-autre">
+                            Autre
+                        </div>  
+                    </div>
+                    <div id='calendar'>
+        
+                    </div>
+                   
+                </div>
+    
+    
+            </div>
+            
+        </main>
+    </body>
+</html>
