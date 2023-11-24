@@ -75,6 +75,10 @@
     border-radius: 10px;
     background-color: #DFD3C3;
 }
+.flatpickr-disabled  {
+    background-color: red !important;
+    color: white !important;
+}
 
 /* CSS pour désactiver le scroll vertical du calendrier */
 .fc-scroller {

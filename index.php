@@ -2,6 +2,7 @@
 require "vendor/autoload.php";
 use App\controllers\PlanningController;
 use App\controllers\LoginController;
+use App\Controllers\FormsController;
 //////////// GET PARAMS /////////////
 $request = $_SERVER['REQUEST_URI'];
 $get_request = explode('?' ,$request, 2);
@@ -15,8 +16,16 @@ switch ($REQUEST) {
        echo  PlanningController::Main();
     break;
 
+    case '/Planning/home':
+        echo  PlanningController::Main();
+     break;
+
     case '/Planning/login':
         echo  LoginController::Main();
+     break;
+
+    case '/Planning/forms':
+        echo  FormsController::Main();
      break;
         
     default:
