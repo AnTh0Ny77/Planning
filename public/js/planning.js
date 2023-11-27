@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridWeek' , 
+      initialView: 'dayGridDay' , 
       weekends : false ,
       themeSystem: 'bootstrap',
       buttonText : {
           today: false , 
           dayGridMonth: 'mois',
-          dayGridWeek:  'semaine'
+          dayGridWeek:  'semaine' , 
+          dayGridDay : 'jour'
       },
       headerToolbar : {
-          center : 'dayGridWeek dayGridMonth',
+          center : 'dayGridDay dayGridWeek dayGridMonth',
           end: 'prev,next'
       }, 
      
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if(memeJour(element.to__out , element.to__in) &&  traiterDateBool(element.to__out) ) {
           var temp = {
               id : element.to__id , 
-              title :  element.prenom + ' ' + element.nom + ' ' +   element.to__info  , 
+              title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  , 
               backgroundColor : returnBackgroundColor(element.to__info) ,
               borderColor : returnBackgroundColor(element.to__info) , 
               start : traiterDate(element.to__out) 
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }else if(!memeJour(element.to__out , element.to__in) && estLendemain(element.to__in , element.to__out ) &&  traiterDateBool(element.to__in)){
           var temp = {
               id : element.to__id , 
-              title :  element.prenom + ' ' + element.nom + ' ' +   element.to__info  , 
+              title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  , 
               backgroundColor : returnBackgroundColor(element.to__info) ,
               borderColor : returnBackgroundColor(element.to__info) , 
               start : traiterDate(element.to__out) 
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }else if(memeJour(element.to__out , element.to__in) && traiterDateBool(element.to__out) && traiterSortieTardive(element.to__in) ){
           var temp = {
               id : element.to__id , 
-              title :  element.prenom + ' ' + element.nom + ' ' +   element.to__info  ,
+              title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  ,
               backgroundColor : returnBackgroundColor(element.to__info) ,
               borderColor : returnBackgroundColor(element.to__info) , 
               start : traiterDate(element.to__out) ,
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
           var temp = {
               id : element.to__id , 
-              title :  element.prenom + ' ' + element.nom + ' ' +   element.to__info  ,
+              title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  ,
               backgroundColor : returnBackgroundColor(element.to__info) ,
               borderColor : returnBackgroundColor(element.to__info) , 
               start : traiterDate(element.to__out) ,
@@ -118,6 +119,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Si l'heure n'est pas définie, utiliser le format d'origine
         return date;
     }
+
+
+    function premiereLettreMajusculeAvecPoint(chaine) {
+        // Vérifie si la chaîne est non vide
+        if (chaine && typeof chaine === 'string') {
+          // Récupère la première lettre et la transforme en majuscule
+          var premiereLettreMaj = chaine.charAt(0).toUpperCase();
+      
+          // Ajoute un point
+          return premiereLettreMaj + ".";
+        } else {
+          // Si la chaîne est vide ou n'est pas une chaîne de caractères, retourne la chaîne originale
+          return "";
+        }
+      }
+      
     
   
   

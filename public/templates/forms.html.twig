@@ -48,23 +48,23 @@
         </nav>
         <div class="container nav-space">
             <form class="">
-                <div class=" mt-5 mb-3">
+                <div class="my-4">
                     <label for="exampleInputEmail1" class="form-label">Type d'absence</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Congés payés</option>
-                        <option value="1">Non payés</option>
-                        <option value="3">Maladie</option>
-                        <option value="2">Inter ou visite chez client</option>
-                        <option value="3">Récupération</option>
-                        <option value="3">Télétravail</option>
+                    <select class="form-select" aria-label="Default select example" id="select-absence">
+                        <option value="CP" selected>Congés payés</option>
+                        <option value="NP">Non payés</option>
+                        <option value="MLD">Maladie</option>
+                        <option value="INT">Inter ou visite chez client</option>
+                        <option value="REC">Récupération</option>
+                        <option value="TEL">Télétravail</option>
                       </select>
                 </div>
-
-                <div class="cp-wrapper">
-
-                    <div class=" mt-5 mb-3 ">
+                <hr>
+                {# //////////congés payés ///////////////////////////////////////////////////////////// #}
+                <div class="select-wrapper" id="cp-wrapper">
+                    <div class="my-3 ">
                         <label for="exampleInputEmail1" class="form-label">Date de départ </label>
-                        <input type="text" class="form-select" name="cpDate" id="cpDate">
+                        <input type="text" class="form-control" name="cpDate" id="cpDate">
                     </div>
                     <div class=" mt-1 mb-3 ">
                         <label for="exampleInputEmail1" class="form-label">Heure de depart : (demi journée mini )</label>
@@ -73,6 +73,7 @@
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
                                 <label class="form-check-label" for="inlineRadio1">8h00</label>
                             </div>
+                            
                               <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                                 <label class="form-check-label" for="inlineRadio2">12h30</label>
@@ -80,10 +81,10 @@
                         </div>
                         
                     </div>
-
-                    <div class=" mt-5 mb-3 ">
+                    <hr>
+                    <div class="my-3">
                         <label for="exampleInputEmail1" class="form-label">Date de retour </label>
-                        <input type="text" class="form-select" name="cpDate" id="cpDateR">
+                        <input type="text" class="form-control" name="cpDate" id="cpDateR">
                     </div>
                     <div class=" mt-1 mb-3 ">
                         <label for="exampleInputEmail1" class="form-label">Heure de retour : (demi journée mini )</label>
@@ -92,7 +93,7 @@
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
                                 <label class="form-check-label" for="inlineRadio1">8h00</label>
                             </div>
-                              <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions"  value="option2">
                                 <label class="form-check-label" for="inlineRadio2">12h30</label>
                             </div>
@@ -100,11 +101,111 @@
                         
                     </div>
                 </div>
-               
-              
-                
-              </form>
+                 {# ////////// TELETRAVAIL ///////////////////////////////////////////////////////////// #}
+                 <div class="select-wrapper hidden-debut" id="tt-wrapper">
+                    <div class="my-3 ">
+                        <label for="exampleInputEmail1" class="form-label">Date de départ </label>
+                        <input type="text" class="form-control" name="cpDate" id="ttDate">
+                    </div>
+                    <div class=" mt-1 mb-3 ">
+                        <label for="exampleInputEmail1" class="form-label">Heure de depart : (demi journée mini )</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">8h00</label>
+                            </div>
+                            
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">12h30</label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de retour </label>
+                        <input type="text" class="form-control" name="cpDate" id="ttDateR">
+                    </div>
+                    <div class=" mt-1 mb-3 ">
+                        <label for="exampleInputEmail1" class="form-label">Heure de retour : (demi journée mini )</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">8h00</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions"  value="option2">
+                                <label class="form-check-label" for="inlineRadio2">12h30</label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                {# //////////NON  payés ///////////////////////////////////////////////////////////// #}
+                <div class="select-wrapper hidden-debut" id="np-wrapper">
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de départ : ( tranche horaire de 1 heure )</label>
+                        <input type="text" class="form-control" name="npDate" id="npDate">
+                    </div>
+                    <hr>
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de retour :  ( tranche horaire de 1 heure )</label>
+                        <input type="text" class="form-control" name="npDateR" id="npDateR">
+                    </div>
+                </div>
 
+
+                  {# //////////MALADIE ///////////////////////////////////////////////////////////// #}
+                  <div class="select-wrapper hidden-debut" id="mal-wrapper">
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de départ : ( tranche horaire de 1 heure )</label>
+                        <input type="text" class="form-control" name="malDate" id="malDate">
+                    </div>
+                    <hr>
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de retour :  ( tranche horaire de 1 heure )</label>
+                        <input type="text" class="form-control" name="malDateR" id="malDateR">
+                    </div>
+                </div>
+
+                 {# ////////// RECUP  ///////////////////////////////////////////////////////////// #}
+                 <div class="select-wrapper hidden-debut" id="rec-wrapper">
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de départ : ( tranche horaire de 15 minutes )</label>
+                        <input type="text" class="form-control" name="recDate" id="recDate">
+                    </div>
+                    <hr>
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de retour :  ( tranche horaire de 15 minutes )</label>
+                        <input type="text" class="form-control" name="recDateR" id="recDateR">
+                    </div>
+                </div>
+
+                {# ////////// INTER/VISITE CLIENT  ///////////////////////////////////////////////////////////// #}
+                <div class="select-wrapper hidden-debut" id="int-wrapper">
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de départ : ( tranche horaire libre )</label>
+                        <input type="text" class="form-control" name="intDate" id="intDate">
+                    </div>
+                    <hr>
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Date de retour :  ( tranche horaire libre )</label>
+                        <input type="text" class="form-control" name="intDateR" id="intDateR">
+                    </div>
+                </div>
+                <hr>
+                 {# ////////// MOTIF  ///////////////////////////////////////////////////////////// #}
+                <div class=" " id="">
+                    <div class=" my-3">
+                        <label for="exampleInputEmail1" class="form-label">Motif</label>
+                        <input type="text" class="form-control" name="motif" >
+                    </div>
+                    
+                </div>
+                <button type="button" class="btn btn-success">VALIDER</button>
+
+            </form>
         </div>
         <script type="text/javascript" src="public/js/forms.js"></script>
     </body>
