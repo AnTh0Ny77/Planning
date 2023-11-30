@@ -1,6 +1,8 @@
 {
     "api": {
-        "host": "http://localhost:80" ,
-        "env_uri" : "/SoftRecode/"
+        "host": "http://localhost:8080" ,
+        "env_uri" : "/SoftRecode/" , 
+        "prod" : "http://192.168.1.105:80/" , 
+        "env_prod" : "api"
     }
 }
