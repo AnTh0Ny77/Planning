@@ -14,10 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
           center : 'dayGridDay dayGridWeek dayGridMonth',
           end: 'prev,next'
       }, 
-     
-     
-    });
+      eventClick: function(event) {
 
+        $('#exampleModalToggle').modal('show');
+    }
+ 
+    });
+    
     var array_events =  JSON.parse(document.getElementById('planning').value);
    
     for (const element of array_events) {

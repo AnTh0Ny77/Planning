@@ -33,7 +33,6 @@ class FormsController {
     }
 
 
-
     ///////////////////////////////FUNCTIONS///////////////////////////////////
     public static function handleForms($select , $user){
 
@@ -55,7 +54,6 @@ class FormsController {
                     'to__abs_user' => $user['user__id'] , 
                     'to__abs_etat' => 'DEM' , 
                     'to__abs_dt' => date('Y-m-d H:i:s'),
-
                 ];
                 break;
             case 'NP':
