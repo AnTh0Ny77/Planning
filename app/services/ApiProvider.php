@@ -30,6 +30,24 @@ class ApiProvider {
 		return $response->getBody()->read(12047878);
     }
 
+	public  function postAbsence($body){
+        $config = json_decode(file_get_contents(__DIR__ . '/config.json'));
+		$base_uri = $config->api->host;
+		$env_uri = $config->api->env_uri;
+		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false)]);
+		try {
+			$response = $client->post(
+				$env_uri . 'apiPlanning' , ['json' => $body ]
+				
+			);
+		} catch (GuzzleHttp\Exception\ClientException $exeption) {
+			$response = $exeption->getResponse();
+			exit();
+		}
+		
+		return $response->getBody()->read(12047878);
+    }
+
 	public  function login($username, $password){
 
 		$config = json_decode(file_get_contents(__DIR__ . '/config.json'));

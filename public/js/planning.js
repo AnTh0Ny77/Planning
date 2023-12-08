@@ -7,16 +7,65 @@ document.addEventListener('DOMContentLoaded', function() {
       buttonText : {
           today: false , 
           dayGridMonth: 'mois',
-          dayGridWeek:  'semaine' , 
+          dayGridWeek:  'semaine', 
           dayGridDay : 'jour'
       },
       headerToolbar : {
           center : 'dayGridDay dayGridWeek dayGridMonth',
           end: 'prev,next'
       }, 
-      eventClick: function(event) {
+      displayEventEnd : false ,
+      displayEventTime : false ,
+      eventClick: function(eventClickInfo ) {
+        console.log(eventClickInfo.event._def.extendedProps);
 
+        $("#autor").text(eventClickInfo.event._def.extendedProps.prenom + " " + eventClickInfo.event._def.extendedProps.nom);
+       switch (eventClickInfo.event._def.extendedProps.etat) {
+        case 'DEM':
+            $('#status').text('En attente de validation');
+            break;
+
+        case 'OK':
+            $('#status').text('Demande acceptée');
+            break;
+
+        case 'NO':
+            $('#status').text('Demande refusée');
+            break;
+
+        case 'ANUL':
+            $('#status').text('Demande annulée');
+            break;
+       }
+       switch (eventClickInfo.event._def.extendedProps.motif) {
+        case 'CP':
+            $('#type').text('Congés payés');
+            break;
+
+        case 'MLD':
+            $('#type').text('Arret maladie');
+            break;
+
+        case 'NP':
+            $('#type').text('Non payés');
+            break;
+
+        case 'INT':
+            $('#type').text('Intervention');
+            break;
+
+        case 'TT':
+            $('#type').text('Télétravail');
+            break;
+
+        case 'RCU':
+            $('#type').text('Récupération');
+            break;
+       }  
+        console.log(formatterDateModal(eventClickInfo.event._def.extendedProps.start));
+        $('#time').text('Du ' + formatterDateModal(eventClickInfo.event._def.extendedProps.start));
         $('#exampleModalToggle').modal('show');
+
     }
  
     });
@@ -24,40 +73,80 @@ document.addEventListener('DOMContentLoaded', function() {
     var array_events =  JSON.parse(document.getElementById('planning').value);
    
     for (const element of array_events) {
+        console.log(element.to__motif);
       if(memeJour(element.to__out , element.to__in) &&  traiterDateBool(element.to__out) ) {
           var temp = {
               id : element.to__id , 
               title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  , 
-              backgroundColor : returnBackgroundColor(element.to__info) ,
-              borderColor : returnBackgroundColor(element.to__info) , 
-              start : traiterDate(element.to__out) 
+              backgroundColor : returnBackgroundColorMotif(element.to__motif) ,
+              borderColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
+              start : traiterDate(element.to__out) , 
+              extendedProps: {
+                prenom : element.prenom,
+                nom: element.nom , 
+                motif: element.to__motif , 
+                etat: element.to__abs_etat , 
+                info : element.to__info , 
+                start : element.to__out , 
+                stop : element.to__in
+              }
+             
           };
       }else if(!memeJour(element.to__out , element.to__in) && estLendemain(element.to__in , element.to__out ) &&  traiterDateBool(element.to__in)){
           var temp = {
               id : element.to__id , 
               title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  , 
-              backgroundColor : returnBackgroundColor(element.to__info) ,
-              borderColor : returnBackgroundColor(element.to__info) , 
-              start : traiterDate(element.to__out) 
+              backgroundColor : returnBackgroundColorMotif(element.to__motif ) ,
+              borderColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
+              start : traiterDate(element.to__out) , 
+              extendedProps: {
+                prenom : element.prenom,
+                nom: element.nom , 
+                motif: element.to__motif , 
+                etat: element.to__abs_etat , 
+                info : element.to__info ,
+                start : element.to__out , 
+                stop : element.to__in
+              }
+              
           };
       }else if(memeJour(element.to__out , element.to__in) && traiterDateBool(element.to__out) && traiterSortieTardive(element.to__in) ){
           var temp = {
               id : element.to__id , 
               title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  ,
-              backgroundColor : returnBackgroundColor(element.to__info) ,
-              borderColor : returnBackgroundColor(element.to__info) , 
+              backgroundColor : returnBackgroundColorMotif(element.to__motif ) ,
+              borderColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
               start : traiterDate(element.to__out) ,
-              end : traiterDateSortie(ajusterDateFin(element.to__in))
+              end : traiterDateSortie(ajusterDateFin(element.to__in)) , 
+              extendedProps: {
+                prenom : element.prenom,
+                nom: element.nom , 
+                motif: element.to__motif , 
+                etat: element.to__abs_etat , 
+                info : element.to__info , 
+                start : element.to__out , 
+                stop : element.to__in
+              }
+              
           };
       }else{
-        
           var temp = {
               id : element.to__id , 
               title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  ,
-              backgroundColor : returnBackgroundColor(element.to__info) ,
-              borderColor : returnBackgroundColor(element.to__info) , 
+              backgroundColor : returnBackgroundColorMotif(element.to__motif) ,
+              borderColor : returnBackgroundColorMotifBorder(element.to__abs_etat) ,  
               start : traiterDate(element.to__out) ,
-              end : traiterDateSortie(ajusterDateFin(element.to__in))
+              end : traiterDateSortie(ajusterDateFin(element.to__in)) ,
+              extendedProps: {
+                prenom : element.prenom,
+                nom: element.nom , 
+                motif: element.to__motif , 
+                etat: element.to__abs_etat , 
+                info : element.to__info , 
+                start : element.to__out , 
+                stop : element.to__in
+              } 
+             
           };
       }
       calendar.addEvent(temp);
@@ -82,6 +171,29 @@ document.addEventListener('DOMContentLoaded', function() {
             return dateSQL;
         }
     }
+
+    function formatterDateModal(inputString) {
+        const inputDate = new Date(inputString);
+        
+        // Vérifie si l'heure est 00:00:00
+        const isMidnight = inputDate.getHours() === 0 && inputDate.getMinutes() === 0;
+      
+        const options = {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        };
+      
+        if (isMidnight) {
+          // Si l'heure est 00:00:00, ne renvoie que la date
+          return inputDate.toLocaleDateString('fr-FR', options);
+        } else {
+          // Sinon, renvoie la date et l'heure
+          return inputDate.toLocaleDateString('fr-FR', options);
+        }
+      }
   
     function formaterDate(date) {
         var dateObj;
@@ -313,4 +425,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return '#DFD3C3';
     }
+
+
+
+    function returnBackgroundColorMotif(string ){
+        console.log(string);
+        if(string == 'CP'){
+                return '#61A3BA';
+        }
+        if(string == 'MLD'){
+                return '#EF9595';
+        }
+        if(string == 'NP' ){
+                return '#DFD3C3';
+        }
+        if(string == 'RCU'){
+                return '#DFD3C3';
+        }
+        if(string =='INT' ){
+                return '#A2C579';
+        }
+        if(string == 'TT'){
+                return '#A2C579';
+           
+        }     
+    }
+
+    function returnBackgroundColorMotifBorder(string ){
+        
+        if(string == 'DEM'){
+                return 'dark';
+        }
+        if(string == 'OK'){
+                return 'white';
+        }
+        if(string == 'NO' ){
+                return 'red';
+        }
+        if(string == 'ANNUL' ){
+            return '#DFD3C3';
+    }
+        
+    }
   });
+
+  

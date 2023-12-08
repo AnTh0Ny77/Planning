@@ -12,13 +12,13 @@ class PlanningController {
         $templatesProvider = new TemplatesProvider();
 
         ////////////////////////////GUARD////////////////////////////////////
-        if (empty($_SESSION['userPlanning']))header('location: login');
+        // if (empty($_SESSION['userPlanning']))header('location: login');
 
-        $refresh = $apiProvider->refresh($_SESSION['userPlanning']['data']['refresh_token']);
-        if ( $refresh['code'] > 200) {header('location: login');die();}  
-        $_SESSION['userPlanning']['token'] = $refresh['token']['token'];
-        $user =  $apiProvider->getUser($_SESSION['userPlanning']['token']);
-        $_SESSION['userPlanning'] = $user['data'];
+        // $refresh = $apiProvider->refresh($_SESSION['userPlanning']['data']['refresh_token']);
+        // if ( $refresh['code'] > 200) {header('location: login');die();}  
+        // $_SESSION['userPlanning']['token'] = $refresh['token']['token'];
+        // $user =  $apiProvider->getUser($_SESSION['userPlanning']['token']);
+        // $_SESSION['userPlanning'] = $user['data'];
         ////////////////////////////////////////////////////////////////////
 
       

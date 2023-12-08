@@ -8,7 +8,8 @@ session_start();
 class LoginController {
 
     public static function Main(){
-        
+        header('location: home');
+        die();
         if (!empty($_POST['email'])) {
             $apiProvider = new ApiProvider();
             $user = $apiProvider->login('test@test.fr' , 'test');

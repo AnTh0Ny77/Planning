@@ -32,7 +32,7 @@
     border-width: 1px;
     border-color: rgb(196, 196, 196);
     width: 15%;
-    height: 20px;
+    height: 25px;
     text-align: center;
     color: azure;
     vertical-align: middle;
@@ -44,7 +44,7 @@
     border-width: 1px;
     border-color: rgb(196, 196, 196);
     width: 15%;
-    height: 20px;
+    height: 25px;
     text-align: center;
     color: azure;
     vertical-align: middle;
@@ -56,7 +56,7 @@
     border-width: 1px;
     border-color: rgb(196, 196, 196);
     width: 15%;
-    height: 20px;
+    height: 25px;
     text-align: center;
     color: azure;
     vertical-align: middle;
@@ -68,7 +68,7 @@
     border-width: 1px;
     border-color: rgb(196, 196, 196);
     width: 15%;
-    height: 20px;
+    height: 25px;
     text-align: center;
     color: azure;
     vertical-align: middle;
@@ -118,6 +118,10 @@
 #calendar {
     height: 100vh !important; /* Utilisation de !important pour s'assurer que cette règle a la priorité */
     overflow: hidden; /* Optionnel : pour masquer tout débordement éventuel */
+}
+.fc {
+    font-size: 13px; /* Taille du texte pour les smartphones *//* Texte plus gras pour les smartphones */
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
