@@ -17,7 +17,7 @@ class ApiProvider {
         $config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		$base_uri = $config->api->host;
 		$env_uri = $config->api->env_uri;
-		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false)]);
+		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false) , 'http_errors' => false]);
 		try {
 			$response = $client->get(
 				$env_uri . 'apiPlanning'
@@ -34,7 +34,7 @@ class ApiProvider {
         $config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		$base_uri = $config->api->host;
 		$env_uri = $config->api->env_uri;
-		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false)]);
+		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false) , 'http_errors' => false]);
 		try {
 			$response = $client->post(
 				$env_uri . 'apiPlanning' , ['json' => $body ]
@@ -53,7 +53,7 @@ class ApiProvider {
 		$config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		$base_uri = $config->api->prod;
 		$env_uri = $config->api->env_prod;
-		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false)]);
+		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false) , 'http_errors' => false]);
 		
 		try {
 			$response = $client->post($env_uri. '/login',  ['json' => ['user__mail' => $username, 'user__password' => $password]]);
@@ -74,7 +74,7 @@ class ApiProvider {
 		$config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		$base_uri = $config->api->prod;
 		$env_uri = $config->api->env_prod;
-		$client = new Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false)]);
+		$client = new Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false) , 'http_errors' => false]);
 		try {
 			$response = $client->post($env_uri .'/refresh',  ['json' => ['refresh_token' => $refreshToken]]);
 		} catch (ClientException $exeption){

@@ -63,7 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
             break;
        }  
         console.log(formatterDateModal(eventClickInfo.event._def.extendedProps.start));
-        $('#time').text('Du ' + formatterDateModal(eventClickInfo.event._def.extendedProps.start));
+        $('#time').text('Du : ' + formatterDateModal(eventClickInfo.event._def.extendedProps.start));
+        $('#time2').text('Au : ' + formatterDateModal(eventClickInfo.event._def.extendedProps.stop));
+        $('#infoModal').text(eventClickInfo.event._def.extendedProps.info);
         $('#exampleModalToggle').modal('show');
 
     }

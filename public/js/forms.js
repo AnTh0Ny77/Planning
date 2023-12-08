@@ -103,7 +103,6 @@ $(document).ready(function(){
         
     });
 
-
     function updateDisabledDatesint(selectedDate) {
         // Disable the selected date and all dates that precede it
         intDateR.destroy();
@@ -118,7 +117,6 @@ $(document).ready(function(){
         });
     }
 
-    
     function updateDisabledDatesNp(selectedDate) {
         // Disable the selected date and all dates that precede it
         npDateR.destroy();

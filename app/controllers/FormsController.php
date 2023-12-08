@@ -14,30 +14,23 @@ class FormsController {
         $apiProvider = new ApiProvider();
         $templatesProvider = new TemplatesProvider();
         /////////////////////////////GUARD////////////////////////////////////
-        // if (empty($_SESSION['userPlanning']))header('location: login');
-        
-        // $refresh = $apiProvider->refresh($_SESSION['userPlanning']['data']['refresh_token']);
-        // if ( $refresh['code'] > 200) {header('location: login');die();}  
-        // $_SESSION['userPlanning']['token'] = $refresh['token']['token'];
-        // $user =  $apiProvider->getUser($_SESSION['userPlanning']['token']);
-        // $_SESSION['userPlanning'] = $user['data'];
-
+        if (empty($_SESSION['userPlanning']))header('location: login');
+      
+        $refresh = $apiProvider->refresh($_SESSION['userPlanning']['refresh_token']);
+        if ( $refresh['code'] > 200) {header('location: login?alert=reconnexion exigée');die();}  
+        $_SESSION['userPlanning']['token'] = $refresh['token']['token'];
+        $user =  $apiProvider->getUser($_SESSION['userPlanning']['token']);
+        $_SESSION['userPlanning'] = $user['data'];
         /////////////////////////////POST////////////////////////////////////
         if (!empty($_POST['select-absence'])) {
            $body = self::handleForms($_POST['select-absence']);
-           
            $insert = json_decode($apiProvider->postAbsence($body),true);
-           
            header('location: home');
            die();
-          
         }
-       
         ////////////////////////////TEMPLATE/////////////////////////////////
-        
         return $templatesProvider->provideTemplate()->render('forms.html.twig' , ['user' => $_SESSION['userPlanning']]);
     }
-
 
     ///////////////////////////////FUNCTIONS///////////////////////////////////
     public static function handleForms($select ){
@@ -125,7 +118,7 @@ class FormsController {
                 ];
                 return $body;
                 break;
-            case 'REC':
+            case 'RCU':
                 $format = 'Y-m-d H-i';
                 $dateDepart = $_POST['recDate'];
                 $dateDepart = DateTime::createFromFormat($format, $dateDepart);
@@ -143,7 +136,7 @@ class FormsController {
                 ];
                 return $body;
                 break;
-            case 'TEL':
+            case 'TT':
                 
                 $dateDepart = new DateTime($_POST['recDate']);
                 $dateRetour = new DateTime($_POST['recDateR']);
@@ -171,7 +164,6 @@ class FormsController {
                 ];
                 return $body;
                 break;
-            
         }
 
     }

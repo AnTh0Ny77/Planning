@@ -20,7 +20,7 @@ switch ($REQUEST) {
         echo  PlanningController::Main();
      break;
 
-    case '/Planning/login':
+    case '/Planning/login'.$get_data:
         echo  LoginController::Main();
      break;
 

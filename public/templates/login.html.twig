@@ -30,6 +30,13 @@
                   <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
                   <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
                 </div>
+
+                {% if alert %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{alert}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
               
                 <button type="submit" class="btn btn-success">Se connecter</button>
               </form>
