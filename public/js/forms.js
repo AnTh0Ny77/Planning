@@ -1,21 +1,21 @@
 $(document).ready(function(){
    
 
-    var cpDate  = flatpickr("#cpDate", {
-        enableTime: false,
-        locale: "fr" ,
-        dateFormat: "Y-m-d",
-        onChange: function(selectedDates, dateStr, instance) {
-          // When the date is changed, update the second Flatpickr
-          updateDisabledDates(selectedDates[0]);
-      }
-    });
-    var cpDateR = flatpickr("#cpDateR", {
-        enableTime: false,
-        locale: "fr" ,
-        dateFormat: "Y-m-d",
-        disable: []
-    });
+    // var cpDate  = flatpickr("#cpDate", {
+    //     enableTime: false,
+    //     locale: "fr" ,
+    //     dateFormat: "Y-m-d",
+    //     onChange: function(selectedDates, dateStr, instance) {
+    //       // When the date is changed, update the second Flatpickr
+    //       updateDisabledDates(selectedDates[0]);
+    //   }
+    // });
+    // var cpDateR = flatpickr("#cpDateR", {
+    //     enableTime: false,
+    //     locale: "fr" ,
+    //     dateFormat: "Y-m-d",
+    //     disable: []
+    // });
 
     var ttDate  = flatpickr("#ttDate", {
         enableTime: false,
