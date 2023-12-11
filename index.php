@@ -2,7 +2,7 @@
 require "vendor/autoload.php";
 use App\controllers\PlanningController;
 use App\controllers\LoginController;
-use App\Controllers\FormsController;
+use App\controllers\FormsController;
 //////////// GET PARAMS /////////////
 $request = $_SERVER['REQUEST_URI'];
 $get_request = explode('?' ,$request, 2);
