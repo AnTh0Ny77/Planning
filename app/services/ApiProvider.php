@@ -15,18 +15,19 @@ class ApiProvider {
 
     public  function getPlanning(){
         $config = json_decode(file_get_contents(__DIR__ . '/config.json'));
-		$base_uri = $config->api->host;
-		$env_uri = $config->api->env_uri;
+		$base_uri = $config->api->prod;
+		$env_uri = $config->api->env_prod;
 		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false) , 'http_errors' => false]);
 		try {
 			$response = $client->get(
-				$env_uri . 'apiPlanning'
+				$env_uri . '/planning'
 				
 			);
 		} catch (GuzzleHttp\Exception\ClientException $exeption) {
 			$response = $exeption->getResponse();
 			exit();
 		}
+		
 		return $response->getBody()->read(12047878);
     }
 

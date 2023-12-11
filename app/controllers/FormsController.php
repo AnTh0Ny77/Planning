@@ -15,11 +15,10 @@ class FormsController {
         $templatesProvider = new TemplatesProvider();
         /////////////////////////////GUARD////////////////////////////////////
         if (empty($_SESSION['userPlanning']))header('location: login');
-      
-        $refresh = $apiProvider->refresh($_SESSION['userPlanning']['refresh_token']);
-        if ( $refresh['code'] > 200) {header('location: login?alert=reconnexion exigée');die();}  
+        $refresh = $apiProvider->refresh($_SESSION['userPlanning']['data']['refresh_token']);
+        if ( $refresh['code'] != 200) {header('location: login?alert=reconnexion exigée');die();}  
         $_SESSION['userPlanning']['token'] = $refresh['token']['token'];
-        $user =  $apiProvider->getUser($_SESSION['userPlanning']['token']);
+        $user =  $apiProvider->getUser( $refresh['token']['token']);
         $_SESSION['userPlanning'] = $user['data'];
         /////////////////////////////POST////////////////////////////////////
         if (!empty($_POST['select-absence'])) {
@@ -34,7 +33,6 @@ class FormsController {
 
     ///////////////////////////////FUNCTIONS///////////////////////////////////
     public static function handleForms($select ){
-
         switch ($select) {
             case 'CP':
                // Assuming $_POST['cpDate'] and $_POST['cpDateR'] contain valid date strings
@@ -44,7 +42,6 @@ class FormsController {
                 } else {
                     $dateDepart->setTime(8, 0, 0);  
                 }
-
                 $dateRetour = new DateTime($_POST['cpDateR']);
                 if (!empty($_POST['depart8R']) && $_POST['depart8R'] == '12') {
                     $dateRetour->setTime(13, 45, 0);
