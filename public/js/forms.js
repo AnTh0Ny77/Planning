@@ -1,147 +1,94 @@
 $(document).ready(function(){
    
 
-
-    var defaultDate = new Date();
-    defaultDate.setHours(8, 30);
-    var formattedDate = defaultDate.toISOString().split('T')[0];
-
-    var cpDate = document.getElementById('cpDate');
-    var cpDateR = document.getElementById('cpDateR');
-    var ttDate = document.getElementById('ttDate');
-    var ttDateR = document.getElementById('ttDateR');
-    var npDate = document.getElementById('npDate');
-    var npDateR = document.getElementById('npDateR');
-    var malDate = document.getElementById('malDate');
-    var malDateR = document.getElementById('malDateR');
-    var recDate = document.getElementById('recDate');
-    var recDateR = document.getElementById('recDateR');
-    var intDate = document.getElementById('intDate');
-    var intDateR = document.getElementById('intDateR');
-
-
-    // npDate.value = formattedDate;
-    // npDateR.value = formattedDate;
-    // malDate.value = formattedDate;
-    // malDateR.value = formattedDate;
-    // recDate.value = formattedDate;
-    // recDateR.value = formattedDate;
-    // intDate.value = formattedDate;
-    // intDateR.value = formattedDate;
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // var cpDate  = flatpickr("#cpDate", {
-    //     enableTime: false,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d",
-    //     onChange: function(selectedDates, dateStr, instance) {
-    //       // When the date is changed, update the second Flatpickr
-    //       updateDisabledDates(selectedDates[0]);
-    //   }
-    // });
-    // var cpDateR = flatpickr("#cpDateR", {
-    //     enableTime: false,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d",
-    //     disable: []
-    // });
-
-    // var ttDate  = flatpickr("#ttDate", {
-    //     enableTime: false,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d",
-    //     onChange: function(selectedDates, dateStr, instance) {
-    //         updateDisabledDatestt(selectedDates[0])
-    //   }
-    // });
-
-    // var ttDateR = flatpickr("#ttDateR", {
-    //     enableTime: false,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d",
-    //     disable: []
-    // });
-
-    // var npDate  = flatpickr("#npDate", {
-    //     enableTime: true,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d H-i",
-    //     minuteIncrement: 60 ,
-    //     onChange: function(selectedDates, dateStr, instance) {
-    //         updateDisabledDatesNp(selectedDates[0]);
-    //   }
-    // });
-
-    // var npDateR  = flatpickr("#npDateR", {
-    //     enableTime: true,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d H-i",
-    //     minuteIncrement: 60 ,
+    var cpDate  = flatpickr("#cpDate", {
+        enableTime: false,
+        locale: "fr" ,
+        dateFormat: "Y-m-d",
        
-    // });
+    });
+    var cpDateR = flatpickr("#cpDateR", {
+        enableTime: false,
+        locale: "fr" ,
+        dateFormat: "Y-m-d",
+        disable: []
+    });
 
-    // var malDateR  = flatpickr("#malDateR", {
-    //     enableTime: true,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d H-i",
-    //     minuteIncrement: 60 ,
+    var ttDate  = flatpickr("#ttDate", {
+        enableTime: false,
+        locale: "fr" ,
+        dateFormat: "Y-m-d",
+      
+    });
+
+    var ttDateR = flatpickr("#ttDateR", {
+        enableTime: false,
+        locale: "fr" ,
+        dateFormat: "Y-m-d",
+        disable: []
+    });
+
+    var npDate  = flatpickr("#npDate", {
+        enableTime: true,
+        locale: "fr" ,
+        dateFormat: "Y-m-d H-i",
+        minuteIncrement: 60 ,
+      
+    });
+
+    var npDateR  = flatpickr("#npDateR", {
+        enableTime: true,
+        locale: "fr" ,
+        dateFormat: "Y-m-d H-i",
+        minuteIncrement: 60 ,
        
-    // });
+    });
 
-    // var recDateR  = flatpickr("#recDateR", {
-    //     enableTime: true,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d H-i",
-    //     minuteIncrement: 15 ,
+    var malDateR  = flatpickr("#malDateR", {
+        enableTime: true,
+        locale: "fr" ,
+        dateFormat: "Y-m-d H-i",
+        minuteIncrement: 60 ,
        
-    // });
+    });
 
-    // var recDate  = flatpickr("#recDate", {
-    //     enableTime: true,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d H-i",
-    //     minuteIncrement: 15 ,
-    //     onChange: function(selectedDates, dateStr, instance) {
-    //         updateDisabledDatesrec(selectedDates[0], malDateR  );
-    //   }
-    // });
+    var recDateR  = flatpickr("#recDateR", {
+        enableTime: true,
+        locale: "fr" ,
+        dateFormat: "Y-m-d H-i",
+        minuteIncrement: 15 ,
+       
+    });
 
-    // var malDate  = flatpickr("#malDate", {
-    //     enableTime: true,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d H-i",
-    //     minuteIncrement: 60 ,
-    //     onChange: function(selectedDates, dateStr, instance) {
-    //         updateDisabledDatesGenrerique(selectedDates[0], malDateR , "malDateR" );
-    //   }
-    // });
+    var recDate  = flatpickr("#recDate", {
+        enableTime: true,
+        locale: "fr" ,
+        dateFormat: "Y-m-d H-i",
+        minuteIncrement: 15 ,
+       
+    });
 
-    // var intDate  = flatpickr("#intDate", {
-    //     enableTime: true,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d H-i",
-    //     onChange: function(selectedDates, dateStr, instance) {
-    //         updateDisabledDatesint(selectedDates[0]);
-    //   }
-    // });
+    var malDate  = flatpickr("#malDate", {
+        enableTime: true,
+        locale: "fr" ,
+        dateFormat: "Y-m-d H-i",
+        minuteIncrement: 60 ,
+       
+    });
 
-    // var intDateR  = flatpickr("#intDateR", {
-    //     enableTime: true,
-    //     locale: "fr" ,
-    //     dateFormat: "Y-m-d H-i",
+    var intDate  = flatpickr("#intDate", {
+        enableTime: true,
+        locale: "fr" ,
+        dateFormat: "Y-m-d H-i",
+       
+    });
+
+    var intDateR  = flatpickr("#intDateR", {
+        enableTime: true,
+        locale: "fr" ,
+        dateFormat: "Y-m-d H-i",
         
-    // });
+    });
 
     function updateDisabledDatesint(selectedDate) {
         // Disable the selected date and all dates that precede it

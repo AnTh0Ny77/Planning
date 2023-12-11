@@ -64,7 +64,7 @@
                 <div class="select-wrapper" id="cp-wrapper">
                     <div class="my-3 ">
                         <label for="exampleInputEmail1" class="form-label">Date de départ </label>
-                        <input type="date" class="form-control" name="cpDate" id="cpDate">
+                        <input type="text" class="form-control" name="cpDate" id="cpDate">
                     </div>
                     <div class=" mt-1 mb-3 ">
                         <label for="exampleInputEmail1" class="form-label">Heure de depart : (demi journée mini )</label>
@@ -79,11 +79,12 @@
                                 <label class="form-check-label" for="inlineRadio2">après-midi ( 13h30 ou 14h )</label>
                             </div>
                         </div>
+                        
                     </div>
                     <hr>
                     <div class="my-3">
                         <label for="exampleInputEmail1" class="form-label">Date de retour </label>
-                        <input type="date" class="form-control" name="cpDateR" id="cpDateR">
+                        <input type="text" class="form-control" name="cpDateR" id="cpDateR">
                     </div>
                     <div class=" mt-1 mb-3 ">
                         <label for="exampleInputEmail1" class="form-label">Heure de retour : (demi journée mini )</label>
@@ -97,6 +98,7 @@
                                 <label class="form-check-label" for="inlineRadio2">après-midi ( 13h30 ou 14h )</label>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                  {# ////////// TELETRAVAIL ///////////////////////////////////////////////////////////// #}
@@ -137,24 +139,19 @@
                                 <label class="form-check-label" for="inlineRadio2">12h30</label>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 {# //////////NON  payés ///////////////////////////////////////////////////////////// #}
                 <div class="select-wrapper hidden-debut" id="np-wrapper">
                     <div class=" my-3">
                         <label for="exampleInputEmail1" class="form-label">Date de départ : ( tranche horaire de 1 heure )</label>
-                        <input type="datetime-local" value="{{ current_date | date('Y-m-d') ~ 'T' ~ defaultTime }}"
-                        min="{{ current_date | date('Y-m-d') ~ 'T08:30' }}"
-                        max="{{ current_date | date('Y-m-d') ~ 'T17:30' }}"
-                        step="3600"   class="form-control" name="npDate" id="npDate">
+                        <input type="text" class="form-control" name="npDate" id="npDate">
                     </div>
                     <hr>
                     <div class=" my-3">
                         <label for="exampleInputEmail1" class="form-label">Date de retour :  ( tranche horaire de 1 heure )</label>
-                        <input type="datetime-local" value="{{ current_date | date('Y-m-d') ~ 'T' ~ defaultTime }}"
-                        min="{{ current_date | date('Y-m-d') ~ 'T08:30' }}"
-                        max="{{ current_date | date('Y-m-d') ~ 'T17:30' }}"
-                        step="3600" class="form-control" name="npDateR" id="npDateR">
+                        <input type="text" class="form-control" name="npDateR" id="npDateR">
                     </div>
                 </div>
 
