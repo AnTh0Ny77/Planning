@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /calendrier.myrecode.fr/
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_METHOD} ^(CONNECT|DEBUG|DELETE|MOVE|PUT|GET|POST|TRACE|TRACK)
