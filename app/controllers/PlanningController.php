@@ -18,10 +18,11 @@ class PlanningController {
         $_SESSION['userPlanning']['token'] = $refresh['token']['token'];
         $user =  $apiProvider->getUser( $refresh['token']['token']);
         $_SESSION['userPlanning'] = $user['data'];
+        $_SESSION['token'] = $refresh['token']['token'];
         ////////////////////////////////////////////////////////////////////
-
-        $planning = json_decode($apiProvider->getPlanning(),true);
-        var_dump($planning); die();
+        
+        $planning = json_decode($apiProvider->getPlanning( $_SESSION['token']),true);
+     
         $planning = $planning['data'];
         
         return $templatesProvider->provideTemplate()->render('planning.html.twig' , [

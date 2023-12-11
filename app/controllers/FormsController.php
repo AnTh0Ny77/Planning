@@ -20,10 +20,11 @@ class FormsController {
         $_SESSION['userPlanning']['token'] = $refresh['token']['token'];
         $user =  $apiProvider->getUser( $refresh['token']['token']);
         $_SESSION['userPlanning'] = $user['data'];
+        $_SESSION['token'] = $refresh['token']['token'];
         /////////////////////////////POST////////////////////////////////////
         if (!empty($_POST['select-absence'])) {
            $body = self::handleForms($_POST['select-absence']);
-           $insert = json_decode($apiProvider->postAbsence($body),true);
+           $insert = json_decode($apiProvider->postAbsence($body ,$_SESSION['token']),true);
            header('location: home');
            die();
         }
