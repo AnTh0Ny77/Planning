@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 start : element.to__out , 
                 stop : element.to__in
               }
-             
           };
       }else if(!memeJour(element.to__out , element.to__in) && estLendemain(element.to__in , element.to__out ) &&  traiterDateBool(element.to__in)){
           var temp = {
