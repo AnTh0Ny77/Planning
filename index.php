@@ -12,7 +12,7 @@ if (isset($get_request[1])) {  $get_data = '?' . $get_request[1]; } else {$get_d
 $REQUEST = $get_request[0] . $get_data ; 
 ////////////// ROUTES //////////////
 switch ($REQUEST) {
-    case '':
+    case '/':
        echo  PlanningController::Main();
     break;
 
