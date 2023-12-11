@@ -13,7 +13,7 @@ class ApiProvider {
 	}
 
 
-    public  function getPlanning($token){
+    public function getPlanning($token){
         $config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		$base_uri = $config->api->prod;
 		$env_uri = $config->api->env_prod;
@@ -31,7 +31,7 @@ class ApiProvider {
 		return $response->getBody()->read(12047878);
     }
 
-	public  function postAbsence($body , $token){
+	public function postAbsence($body , $token){
         $config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		$base_uri = $config->api->prod;
 		$env_uri = $config->api->env_prod;
