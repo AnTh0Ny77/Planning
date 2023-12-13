@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function returnBackgroundColorMotif(string ){
         console.log(string);
         if(string == 'CP'){
-                return '#61A3BA';
+                return '#3788D8';
         }
         if(string == 'MLD'){
                 return '#EF9595';
