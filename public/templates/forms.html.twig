@@ -47,7 +47,7 @@
             </div>
         </nav>
         <div class="container nav-space">
-            <form class="" action="forms" method="post">
+            <form class="" action="forms" method="post" id="formsAbs">
                 <div class="my-4">
                     <label for="exampleInputEmail1" class="form-label">Type d'absence</label>
                     <select class="form-select" aria-label="Default select example" name="select-absence" id="select-absence">
@@ -203,10 +203,11 @@
                     </div>
                     
                 </div>
-                <button type="submit" class="btn btn-success">VALIDER</button>
+                <button type="button" id="submit_abs" class="btn btn-success">VALIDER</button>
 
             </form>
         </div>
         <script type="text/javascript" src="public/js/forms.js"></script>
+        <script type="text/javascript" src="public/js/handleForms.js"></script>
     </body>
 </html>

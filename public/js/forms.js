@@ -32,7 +32,7 @@ $(document).ready(function(){
         enableTime: true,
         locale: "fr" ,
         dateFormat: "Y-m-d H-i",
-        minuteIncrement: 60 ,
+        minuteIncrement: 5 ,
       
     });
 
@@ -40,7 +40,7 @@ $(document).ready(function(){
         enableTime: true,
         locale: "fr" ,
         dateFormat: "Y-m-d H-i",
-        minuteIncrement: 60 ,
+        minuteIncrement: 5 ,
        
     });
 
@@ -48,7 +48,7 @@ $(document).ready(function(){
         enableTime: true,
         locale: "fr" ,
         dateFormat: "Y-m-d H-i",
-        minuteIncrement: 60 ,
+        minuteIncrement: 5 ,
        
     });
 
@@ -56,7 +56,7 @@ $(document).ready(function(){
         enableTime: true,
         locale: "fr" ,
         dateFormat: "Y-m-d H-i",
-        minuteIncrement: 15 ,
+        minuteIncrement: 5 ,
        
     });
 
@@ -64,7 +64,7 @@ $(document).ready(function(){
         enableTime: true,
         locale: "fr" ,
         dateFormat: "Y-m-d H-i",
-        minuteIncrement: 15 ,
+        minuteIncrement: 5 ,
        
     });
 
@@ -72,7 +72,7 @@ $(document).ready(function(){
         enableTime: true,
         locale: "fr" ,
         dateFormat: "Y-m-d H-i",
-        minuteIncrement: 60 ,
+        minuteIncrement: 5 ,
        
     });
 
