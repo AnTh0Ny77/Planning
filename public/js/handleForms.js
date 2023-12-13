@@ -9,10 +9,12 @@ $(document).ready(function(){
         
             case 'NP':
                 compareDatesMinutes('npDate' , 'npDateR')
+                compareGap('npDate' , 'npDateR' , 60)
                 break;
 
             case 'MLD':
                 compareDatesMinutes('malDate' , 'malDateR')
+                compareGap('malDate' , 'malDateR' , 60)
                 break;
 
             case 'INT':
@@ -20,7 +22,8 @@ $(document).ready(function(){
                 break;
 
             case 'RCU':
-                compareDates('recDate' , 'recDateR')
+                compareDatesMinutes('recDate' , 'recDateR')
+                compareGap('intDate' , 'intDateR' , 15)
                 break;
 
             case 'TT':
@@ -41,12 +44,12 @@ $(document).ready(function(){
   
         // Compare dates
         if (parsedStartDate > parsedEndDate) {
-          // Alert if the start date is later than the end date
-          alert('La date de retour n est pas correcte');
-        } else {
-          // Do something else if the dates are valid
-          alert('Dates ok');
-        }
+            $('#texte-alert').text('La date de retour ne doit pas etre avant la date de depart')
+            $('#exampleModalToggle').modal('show');
+          } else {
+            // Do something else if the dates are valid
+            alert('Dates ok');
+          }
       }
 
 
@@ -63,11 +66,11 @@ $(document).ready(function(){
         // Compare dates
         if (parsedStartDate > parsedEndDate) {
           // Alert if the start date is later than the end date
-          $('#texte-alert').text('La date de retour n est pas correcte').modal('show'); 
+          $('#texte-alert').text('La date de retour ne doit pas etre avant la date de depart')
+          $('#exampleModalToggle').modal('show');
         } else {
           // Do something else if the dates are valid
           alert('Dates ok');
-          $('#exampleModalToggle').modal('show'); 
         }
       }
 
