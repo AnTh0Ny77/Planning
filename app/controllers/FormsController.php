@@ -23,7 +23,8 @@ class FormsController {
         $_SESSION['token'] = $refresh['token']['token'];
         /////////////////////////////POST////////////////////////////////////
         if (!empty($_POST['select-absence'])) {
-           $body = self::handleForms($_POST['select-absence']);
+            
+           $body = self::handleForms($_POST['select-absence'] , $_SESSION['userPlanning']['data']['user__id']);
            $insert = json_decode($apiProvider->postAbsence($body ,$_SESSION['token']),true);
            header('location: home');
            die();
@@ -33,7 +34,7 @@ class FormsController {
     }
 
     ///////////////////////////////FUNCTIONS///////////////////////////////////
-    public static function handleForms($select ){
+    public static function handleForms($select  , $id){
         switch ($select) {
             case 'CP':
                // Assuming $_POST['cpDate'] and $_POST['cpDateR'] contain valid date strings
@@ -54,8 +55,8 @@ class FormsController {
                     'to__in' => $dateRetour->format('Y-m-d H:i:s') , 
                     'to__motif' => $select , 
                     'to__info' => $_POST['motif'] , 
-                    'to__abs_user' => 11, 
-                    'to__user' =>11 ,
+                    'to__abs_user' => $id, 
+                    'to__user' =>$id ,
                     'to__abs_etat' => 'DEM' , 
                     'to__abs_dt' => date('Y-m-d H:i:s'),
                 ];
@@ -74,7 +75,8 @@ class FormsController {
                     'to__in' => $dateRetour->format('Y-m-d H:i:s') , 
                     'to__motif' => $select , 
                     'to__info' => $_POST['motif'] , 
-                    'to__abs_user' => 7, 
+                    'to__abs_user' => $id, 
+                    'to__user' =>$id,
                     'to__abs_etat' => 'DEM' , 
                     'to__abs_dt' => date('Y-m-d H:i:s'),
                 ];
@@ -92,7 +94,8 @@ class FormsController {
                     'to__in' => $dateRetour->format('Y-m-d H:i:s') , 
                     'to__motif' => $select , 
                     'to__info' => $_POST['motif'] , 
-                    'to__abs_user' => 7, 
+                    'to__abs_user' => $id, 
+                    'to__user' =>$id ,
                     'to__abs_etat' => 'DEM' , 
                     'to__abs_dt' => date('Y-m-d H:i:s'),
                 ];
@@ -110,7 +113,8 @@ class FormsController {
                     'to__in' => $dateRetour->format('Y-m-d H:i:s') , 
                     'to__motif' => $select , 
                     'to__info' => $_POST['motif'] , 
-                    'to__abs_user' => 7, 
+                    'to__abs_user' => $id, 
+                    'to__user' =>$id ,
                     'to__abs_etat' => 'DEM' , 
                     'to__abs_dt' => date('Y-m-d H:i:s'),
                 ];
@@ -128,7 +132,8 @@ class FormsController {
                     'to__in' => $dateRetour->format('Y-m-d H:i:s') , 
                     'to__motif' => $select , 
                     'to__info' => $_POST['motif'] , 
-                    'to__abs_user' => 7, 
+                    'to__abs_user' => $id, 
+                    'to__user' =>$id ,
                     'to__abs_etat' => 'DEM' , 
                     'to__abs_dt' => date('Y-m-d H:i:s'),
                 ];
@@ -156,7 +161,8 @@ class FormsController {
                     'to__in' => $dateRetour->format('Y-m-d H:i:s') , 
                     'to__motif' => $select , 
                     'to__info' => $_POST['motif'] , 
-                    'to__abs_user' => 7, 
+                    'to__abs_user' => $id, 
+                    'to__user' =>$id ,
                     'to__abs_etat' => 'DEM' , 
                     'to__abs_dt' => date('Y-m-d H:i:s'),
                 ];

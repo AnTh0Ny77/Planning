@@ -66,10 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#time').text('Du : ' + formatterDateModal(eventClickInfo.event._def.extendedProps.start));
         $('#time2').text('Au : ' + formatterDateModal(eventClickInfo.event._def.extendedProps.stop));
         $('#infoModal').text(eventClickInfo.event._def.extendedProps.info);
+        $('#abs__id').val(eventClickInfo.event._def.extendedProps.id);
         $('#exampleModalToggle').modal('show');
-
     }
- 
     });
     
     var array_events =  JSON.parse(document.getElementById('planning').value);
@@ -90,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 etat: element.to__abs_etat , 
                 info : element.to__info , 
                 start : element.to__out , 
-                stop : element.to__in
+                stop : element.to__in , 
+                id : element.to__id
               }
           };
       }else if(!memeJour(element.to__out , element.to__in) && estLendemain(element.to__in , element.to__out ) &&  traiterDateBool(element.to__in)){
@@ -107,7 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 etat: element.to__abs_etat , 
                 info : element.to__info ,
                 start : element.to__out , 
-                stop : element.to__in
+                stop : element.to__in , 
+                id : element.to__id
               }
               
           };
@@ -126,7 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 etat: element.to__abs_etat , 
                 info : element.to__info , 
                 start : element.to__out , 
-                stop : element.to__in
+                stop : element.to__in , 
+                id : element.to__id
               }
               
           };
@@ -145,7 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 etat: element.to__abs_etat , 
                 info : element.to__info , 
                 start : element.to__out , 
-                stop : element.to__in
+                stop : element.to__in , 
+                id : element.to__id
               } 
              
           };
@@ -250,11 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
           return "";
         }
       }
-      
-    
-  
-  
-  
+
   // Fonction pour convertir le mois de chiffres à toutes lettres
   function moisEnLettres(moisNumerique) {
     var moisEnAnglais = [

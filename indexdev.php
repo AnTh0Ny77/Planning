@@ -13,22 +13,23 @@ if (isset($get_request[1])) {  $get_data = '?' . $get_request[1]; } else {$get_d
 $REQUEST = $get_request[0] . $get_data ; 
 ////////////// ROUTES //////////////
 switch ($REQUEST) {
-    case '/':
+    case '/Planning/':
        echo  PlanningController::Main();
     break;
 
-    case '/home':
+    case '/Planning/home':
         echo  PlanningController::Main();
      break;
 
-    case '/login'.$get_data:
+    case '/Planning/login'.$get_data:
         echo  LoginController::Main();
      break;
 
-    case '/forms':
+    case '/Planning/forms':
         echo  FormsController::Main();
      break;
-        
+
+    
     default:
         PlanningController::Main();
     break;

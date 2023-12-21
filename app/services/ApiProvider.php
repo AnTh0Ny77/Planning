@@ -31,6 +31,23 @@ class ApiProvider {
 		return $response->getBody()->read(12047878);
     }
 
+	public function getPlanningUser($token , $id_user){
+        $config = json_decode(file_get_contents(__DIR__ . '/config.json'));
+		$base_uri = $config->api->prod;
+		$env_uri = $config->api->env_prod;
+		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false) , 'http_errors' => false]);
+		try {
+			$response = $client->get(
+				$env_uri . '/planning?user='.$id_user , 
+				['headers' => self::makeHeaders($token) ]	
+			);
+		} catch (GuzzleHttp\Exception\ClientException $exeption) {
+			$response = $exeption->getResponse();
+			exit();
+		}
+		return $response->getBody()->read(12047878);
+    }
+
 	public function postAbsence($body , $token){
         $config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		$base_uri = $config->api->prod;

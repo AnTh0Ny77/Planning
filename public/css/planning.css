@@ -111,14 +111,14 @@
 
 
 #global-wrapper{
-    height: 100vh; 
+    
     width: 100% !important;
 }
 
 
 #calendar {
-    height: 100vh !important; /* Utilisation de !important pour s'assurer que cette règle a la priorité */
-    overflow: hidden; /* Optionnel : pour masquer tout débordement éventuel */
+ 
+    overflow: scroll; /* Optionnel : pour masquer tout débordement éventuel */
 }
 .fc {
     font-size: 13px; /* Taille du texte pour les smartphones *//* Texte plus gras pour les smartphones */
@@ -152,5 +152,9 @@
         padding-right: 5px;
         margin-bottom: 12px;
         margin-top: 12px;
+    }
+    #calendar {
+        height: 100vh !important; /* Utilisation de !important pour s'assurer que cette règle a la priorité */
+        overflow: scroll; /* Optionnel : pour masquer tout débordement éventuel */
     }
   }

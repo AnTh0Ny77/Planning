@@ -5,7 +5,7 @@ use App\services\TemplatesProvider;
 use App\services\ApiProvider;
 session_start();
 
-class PlanningController {
+class RecapController {
 
     public static function Main(){
         $apiProvider = new ApiProvider();
@@ -21,28 +21,12 @@ class PlanningController {
         $_SESSION['token'] = $refresh['token']['token'];
         ////////////////////////////////////////////////////////////////////
         
+        $planning = json_decode($apiProvider->getPlanningUser($_SESSION['token'] , $_SESSION['userPlanning']['data']['user__id']),true);
 
-        if (!empty($_POST['abs__id']) ) {
-           
-            
-
-            $body = [
-                'cadre' => $_POST['cadre__id'] , 
-                'abs__id' => $_POST['abs__id'] , 
-                'motif' => $_POST['motif']
-            ];
-            $insert = json_decode($apiProvider->postAbsence($body ,$_SESSION['token']),true);  
-
-            
-        }
-
-        $planning = json_decode($apiProvider->getPlanning( $_SESSION['token']),true);
         $planning = $planning['data'];
-
         
-        return $templatesProvider->provideTemplate()->render('planning.html.twig' , [
-            'planning' => json_encode($planning) , 
-            'user' => $_SESSION['userPlanning']
+        return $templatesProvider->provideTemplate()->render('recap.html.twig' , [
+            'planning' => json_encode($planning)
         ]);
 
     }

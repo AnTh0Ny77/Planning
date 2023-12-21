@@ -4,34 +4,47 @@ $(document).ready(function(){
         let form = $('#formsAbs');
         switch (typeAbs) {
             case 'CP':
-                compareDates('cpDate' , 'cpDateR')
+				if (compareDates('cpDate' , 'cpDateR')) {
+					$('#formsAbs').submit();
+				}
                 break;
-        
             case 'NP':
-                compareDatesMinutes('npDate' , 'npDateR')
-                compareGap('npDate' , 'npDateR' , 60)
+				if (compareDatesMinutes('npDate' , 'npDateR')) {
+					if (compareGap('npDate' , 'npDateR' , 60)) {
+						$('#formsAbs').submit();
+					}
+				}
                 break;
-
             case 'MLD':
-                compareDatesMinutes('malDate' , 'malDateR')
-                compareGap('malDate' , 'malDateR' , 60)
+				if (compareDatesMinutes('malDate' , 'malDateR')) {
+					if(compareGap('malDate' , 'malDateR' , 60)){
+						$('#formsAbs').submit();
+					}
+				}
                 break;
-
             case 'INT':
-                compareDatesMinutes('intDate' , 'intDateR')
+				if (compareDatesMinutes('intDate' , 'intDateR')) {
+					$('#formsAbs').submit();
+				}
                 break;
-
             case 'RCU':
-                compareDatesMinutes('recDate' , 'recDateR')
-                compareGap('intDate' , 'intDateR' , 15)
+				if (compareDatesMinutes('recDate' , 'recDateR')) {
+					if (compareGap('intDate' , 'intDateR' , 15)) {
+						$('#formsAbs').submit();
+					}
+				}
                 break;
-
             case 'TT':
-                compareDates('ttDate' , 'ttDateR')
+				if (compareDates('ttDate' , 'ttDateR')) {
+					$('#formsAbs').submit();
+				}
                 break;
         }
     })
 
+	$('#btn-post').on('click' , function(){
+		$('#formsAbs').submit();
+	})
 
     function compareDates(date1, date2 ) {
         // Get the values of the Flatpickr inputs
@@ -47,8 +60,8 @@ $(document).ready(function(){
             $('#texte-alert').text('La date de retour ne doit pas etre avant la date de depart')
             $('#exampleModalToggle').modal('show');
           } else {
-            // Do something else if the dates are valid
-            alert('Dates ok');
+			 return true;
+            
           }
       }
 
@@ -69,43 +82,101 @@ $(document).ready(function(){
           $('#texte-alert').text('La date de retour ne doit pas etre avant la date de depart')
           $('#exampleModalToggle').modal('show');
         } else {
-          // Do something else if the dates are valid
-          alert('Dates ok');
+          return true
+         
         }
       }
 
 
-      function compareGap($date1 , $date2 , gap) {
+    //   function compareGap($date1, $date2, gap) {
+    //     var startDate = document.getElementById($date1).value;
+    //     var endDate = document.getElementById($date2).value;
+    //     var parsedStartDate = flatpickr.parseDate(startDate, "Y-m-d H:i:S");
+    //     var parsedEndDate = flatpickr.parseDate(endDate, "Y-m-d H:i:S");
+      
+        
+    //     if (
+    //       parsedStartDate.getFullYear() === parsedEndDate.getFullYear() &&
+    //       parsedStartDate.getMonth() === parsedEndDate.getMonth() &&
+    //       parsedStartDate.getDate() === parsedEndDate.getDate()
+    //     ) {
+    //       var timeDifference = Math.abs(parsedEndDate - parsedStartDate) / 60000;
+    //       var roundedEndDate = new Date(
+    //         parsedStartDate.getTime() + Math.round(timeDifference / gap) * gap * 60000
+    //       );
+      
+    //       var options = {
+    //         year: 'numeric',
+    //         month: '2-digit',
+    //         day: '2-digit',
+    //         hour: '2-digit',
+    //         minute: '2-digit',
+    //         hour12: false,
+    //       };
+      
+    //       var formattedRoundedEndDate = roundedEndDate.toLocaleString('fr-FR', options);
+      
+    //       if (timeDifference % gap === 0) {
+    //         //post
+    //       } else {
+    //         $('#alert-post').text(
+    //           'Attention pour ce type de congé les tranches horaires minimum sont de : ' +
+    //             gap +
+    //             ' minutes. Voulez-vous continuer ? Le programme arrondira automatiquement : ' +
+    //             formattedRoundedEndDate
+    //         );
+    //         $('#postModal').modal('show');
+    //       }
+    //     } else {
+    //       //post////
+    //     }
+    //   }
 
-        var startDate = document.getElementById($date1).value;
-        var endDate = document.getElementById($date2).value;
-        var parsedStartDate = flatpickr.parseDate(startDate, "Y-m-d H:i:S");
-        var parsedEndDate = flatpickr.parseDate(endDate, "Y-m-d H:i:S");
-        var timeDifference = Math.abs(parsedEndDate - parsedStartDate) / 60000; 
-        var roundedEndDate = new Date(parsedStartDate.getTime() + Math.round(timeDifference / gap) * gap * 60000);
 
-        var options = {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false 
-        };
-
-        var formattedRoundedEndDate = roundedEndDate.toLocaleString('fr-FR', options);
-
-        if (timeDifference % gap === 0) {
-            alert('Dates ok');
-        ///////post du formulaire//////////
-        } else {
-            $('#texte-alert').text('Attention pour ce type de congé les tranches horaires minimum sont de : ' +
-              gap + ' minutes. Voulez-vous continuer ? Le programme arrondira automatiquement : ' + formattedRoundedEndDate);
-            $('#exampleModalToggle').modal('show'); 
-        }
-      }
-
-
+	function compareGap(date1, date2, gap) {
+		var startDate = document.getElementById(date1).value;
+		var endDate = document.getElementById(date2).value;
+		var parsedStartDate = flatpickr.parseDate(startDate, "Y-m-d H:i:S");
+		var parsedEndDate = flatpickr.parseDate(endDate, "Y-m-d H:i:S");
+	
+		if (
+			parsedStartDate.getFullYear() === parsedEndDate.getFullYear() &&
+			parsedStartDate.getMonth() === parsedEndDate.getMonth() &&
+			parsedStartDate.getDate() === parsedEndDate.getDate()
+		) {
+			var timeDifference = Math.abs(parsedEndDate - parsedStartDate) / 60000;
+			var roundedEndDate = new Date(
+				parsedStartDate.getTime() + Math.round(timeDifference / gap) * gap * 60000
+			);
+	
+			var options = {
+				year: 'numeric',
+				month: '2-digit',
+				day: '2-digit',
+				hour: '2-digit',
+				minute: '2-digit',
+				hour12: false,
+			};
+	
+			var formattedRoundedEndDate = roundedEndDate.toLocaleString('fr-FR', options);
+	
+			if (timeDifference % gap === 0) {
+				return true;
+			} else {
+				$('#alert-post').text(
+					'Attention pour ce type de congé les tranches horaires minimum sont de : ' +
+					gap +
+					' minutes. Voulez-vous continuer ? Le programme arrondira automatiquement : ' +
+					formattedRoundedEndDate
+				);
+				$('#postModal').modal('show');
+			}
+		} else {
+			return true;
+		}
+	}
+	
+    
       function checkRadioBoxes(name) {
         // Get all radio boxes with the specified name attribute
         var radioBoxes = document.querySelectorAll('input[name="'+name+'"]');
