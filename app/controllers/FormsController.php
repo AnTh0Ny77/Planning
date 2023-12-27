@@ -3,9 +3,9 @@ namespace App\controllers;
 require_once  '././vendor/autoload.php';
 use App\services\TemplatesProvider;
 use App\services\ApiProvider;
+use App\services\MailerServices;
 use DateTime;
 session_start();
-
 class FormsController {
 
     public static function Main(){
@@ -13,6 +13,7 @@ class FormsController {
         /////////////////////////////STATEMENTS//////////////////////////////
         $apiProvider = new ApiProvider();
         $templatesProvider = new TemplatesProvider();
+        $mailer = new MailerServices();
         /////////////////////////////GUARD////////////////////////////////////
         if (empty($_SESSION['userPlanning']))header('location: login');
         $refresh = $apiProvider->refresh($_SESSION['userPlanning']['data']['refresh_token']);
@@ -22,10 +23,13 @@ class FormsController {
         $_SESSION['userPlanning'] = $user['data'];
         $_SESSION['token'] = $refresh['token']['token'];
         /////////////////////////////POST////////////////////////////////////
+        
         if (!empty($_POST['select-absence'])) {
-            
            $body = self::handleForms($_POST['select-absence'] , $_SESSION['userPlanning']['data']['user__id']);
            $insert = json_decode($apiProvider->postAbsence($body ,$_SESSION['token']),true);
+           $mail = $mailer->sendMail($_SESSION['userPlanning']['data']['user__abs_adress'] , 'ABSENCE' , 
+           $mailer->bodyAbsence($_SESSION['userPlanning']['data']['user__nom'] 
+           , self::renderMotifString($_POST['select-absence']) , $body['to__info'] ,$body['to__out'] , $body['to__in']));
            header('location: home');
            die();
         }
@@ -170,6 +174,33 @@ class FormsController {
                 break;
         }
 
+    }
+
+    public static function renderMailAdress($id_address){
+
+    }
+
+    public static function renderMotifString($select){
+        switch ($select) {
+            case 'CP':
+                return 'congés payés';
+                break;
+            case 'NP':
+                return 'non payés';
+                break;
+            case 'MLD':
+                return 'Maladie';
+                break;
+            case 'INT':
+                return 'intervention';
+                break;
+            case 'RCU':
+                return 'récupération';
+                break;
+            case 'TT':
+                return 'télétravail';
+                break;
+        }
     }
 
     

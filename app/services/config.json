@@ -4,5 +4,10 @@
         "env_uri" : "/SoftRecode/" , 
         "prod" : "http://130.180.222.139:59085/" , 
         "env_prod" : "api"
+    } , 
+    "mailer": {
+        "host" : "mail01.one2net.net",
+        "username" : "myrecode@recode.fr", 
+        "password" : "48zAjdXdt$256"
     }
 }

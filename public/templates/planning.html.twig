@@ -79,14 +79,16 @@
                     <form class="col-8 " action="" method="post">
                         <input type="hidden" name="cadre__id" id="cadre__id" value="{{user.data.user__id}}">
                         <input type="hidden" name="abs__id" id="abs__id" required>
-                        {% if user.data.user__id == 11 %}
-                        <div class="my-2">
-                            <label for="exampleInputEmail1" class="form-label">Motif de refus</label>
-                            <input type="text" class="form-control" name="motif" required >
-                        </div>
-                        <div class="my-4">
-                            <button type="submit" class="btn  btn-danger">Refuser</button>
-                        </div>  
+                        {% if user.data.user__id == 11 or  user.data.user__id == 10 
+                            or  user.data.user__id == 14 or  user.data.user__id == 20  or  user.data.user__id == 32 
+                            or  user.data.user__id == 56  %}
+                            <div class="my-2">
+                                <label for="exampleInputEmail1" class="form-label">Motif de refus</label>
+                                <input type="text" class="form-control" name="motif" required >
+                            </div>
+                            <div class="my-4">
+                                <button type="submit" class="btn  btn-danger">Refuser</button>
+                            </div>  
                         {% endif %} 
                     </form>
                 </div>
