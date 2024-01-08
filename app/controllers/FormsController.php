@@ -26,10 +26,13 @@ class FormsController {
         
         if (!empty($_POST['select-absence'])) {
            $body = self::handleForms($_POST['select-absence'] , $_SESSION['userPlanning']['data']['user__id']);
+           $body['abs__adress'] = $_SESSION['userPlanning']['data']['user__abs_adress'] ;
+           $body['user__abs'] = $_SESSION['userPlanning']['data']['user__nom'];
+           $body['motif__string'] =  self::renderMotifString($_POST['select-absence']);         
            $insert = json_decode($apiProvider->postAbsence($body ,$_SESSION['token']),true);
-           $mail = $mailer->sendMail($_SESSION['userPlanning']['data']['user__abs_adress'] , 'ABSENCE' , 
-           $mailer->bodyAbsence($_SESSION['userPlanning']['data']['user__nom'] 
-           , self::renderMotifString($_POST['select-absence']) , $body['to__info'] ,$body['to__out'] , $body['to__in']));
+        //    $mail = $mailer->sendMail($_SESSION['userPlanning']['data']['user__abs_adress'] , 'ABSENCE' , 
+        //    $mailer->bodyAbsence($_SESSION['userPlanning']['data']['user__nom'] 
+        //    , self::renderMotifString($_POST['select-absence']) , $body['to__info'] ,$body['to__out'] , $body['to__in']));
            header('location: home');
            die();
         }
@@ -41,8 +44,9 @@ class FormsController {
     public static function handleForms($select  , $id){
         switch ($select) {
             case 'CP':
-               // Assuming $_POST['cpDate'] and $_POST['cpDateR'] contain valid date strings
+               
                 $dateDepart = new DateTime($_POST['cpDate']);
+             
                 if (!empty($_POST['depart8']) && $_POST['depart8'] == '12') {
                     $dateDepart->setTime(13, 45, 0);   
                 } else {
@@ -145,10 +149,9 @@ class FormsController {
                 break;
             case 'TT':
                 
-                $dateDepart = new DateTime($_POST['recDate']);
-                $dateRetour = new DateTime($_POST['recDateR']);
-                // Assuming $_POST['cpDate'] and $_POST['cpDateR'] contain valid date strings
-               
+                $dateDepart = new DateTime($_POST['TTDate']);
+                $dateRetour = new DateTime($_POST['TTDateR']);
+    
                 if (!empty($_POST['depart8m']) && $_POST['depart8m'] == '12') {
                     $dateDepart->setTime(13, 45, 0);   
                 } else {
