@@ -70,9 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (eventClickInfo.event._def.extendedProps.id_user == $('#annul_user_id').val()) {
             var now = new Date();
+            $('#annul_abs_id').val(eventClickInfo.event._def.extendedProps.id);
+            $('#annul_forms').removeClass('d-none');
             if (eventClickInfo.event._def.extendedProps.start > now) {
-                $('#annul_abs_id').val(eventClickInfo.event._def.extendedProps.id);
-                $('#annul_forms').removeClass('d-none');
+                
             }
             
         }else{
