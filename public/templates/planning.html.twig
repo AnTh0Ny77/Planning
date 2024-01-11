@@ -28,6 +28,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="forms">Demandes d'absences</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="logout">Se deconnecter</a>
+                            </li>  
                         </ul>
                     </div>
                 </div>
@@ -73,8 +76,13 @@
                        <p id="time2"></p>
                        <p id="infoModal"></p>
                     </div>
+                    <form class="col-8 d-none" id="annul_forms" action="" method="post">
+                        <input type="hidden" name="annul_user_id" id="annul_user_id" value="{{user.data.user__id}}">
+                        <input type="hidden" name="annul_abs_id" id="annul_abs_id" required>
+                            <button type="submit" class="btn  btn-danger">Annuler</button>
+                    </form>
                 </div>
-                
+
                 <div class="modal-footer">
                     <form class="col-8 " action="" method="post">
                         <input type="hidden" name="cadre__id" id="cadre__id" value="{{user.data.user__id}}">

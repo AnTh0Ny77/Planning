@@ -3,6 +3,7 @@ require "vendor/autoload.php";
 use App\controllers\PlanningController;
 use App\controllers\LoginController;
 use App\controllers\FormsController;
+use App\controller\LogoutController;
 use App\controllers\RecapController;
 //////////// GET PARAMS /////////////
 $request = $_SERVER['REQUEST_URI'];
@@ -27,6 +28,10 @@ switch ($REQUEST) {
 
     case '/forms':
         echo  FormsController::Main();
+     break;
+
+    case '/logout':
+        echo  LogoutController::Main();
      break;
         
     default:

@@ -148,18 +148,36 @@ $(document).ready(function(){
 			var roundedEndDate = new Date(
 				parsedStartDate.getTime() + Math.round(timeDifference / gap) * gap * 60000
 			);
+			var nextSuperiorRoundedEndDate = new Date(parsedStartDate.getTime() 
+			+ Math.ceil(timeDifference / gap) * gap * 60000);
 	
-			var options = {
-				year: 'numeric',
-				month: '2-digit',
-				day: '2-digit',
-				hour: '2-digit',
-				minute: '2-digit',
-				hour12: false,
-			};
-	
-			var formattedRoundedEndDate = roundedEndDate.toLocaleString('fr-FR', options);
-	
+			// Check if the next superior rounded end date is closer to the start date
+			if (nextSuperiorRoundedEndDate.getTime() - parsedStartDate.getTime() < roundedEndDate.getTime() - parsedStartDate.getTime()) {
+				var options = {
+					year: 'numeric',
+					month: '2-digit',
+					day: '2-digit',
+					hour: '2-digit',
+					minute: '2-digit',
+					hour12: false,
+				};
+		
+				var formattedRoundedEndDate = nextSuperiorRoundedEndDate.toLocaleString('fr-FR', options);
+				
+			} else {
+				var options = {
+					year: 'numeric',
+					month: '2-digit',
+					day: '2-digit',
+					hour: '2-digit',
+					minute: '2-digit',
+					hour12: false,
+				};
+		
+				var formattedRoundedEndDate = roundedEndDate.toLocaleString('fr-FR', options);
+			}
+      
+
 			if (timeDifference % gap === 0) {
 				return true;
 			} else {

@@ -30,6 +30,14 @@ class PlanningController {
             $insert = json_decode($apiProvider->postAbsence($body ,$_SESSION['token']),true);  
         }
 
+        if (!empty($_POST['annul_user_id']) ) {      
+            $body = [
+                'annul_user_id' => $_POST['annul_user_id'] , 
+                'annul_abs_id' => $_POST['annul_abs_id'] 
+            ];
+            $insert = json_decode($apiProvider->postAbsence($body ,$_SESSION['token']),true);  
+        }
+
         $planning = json_decode($apiProvider->getPlanning( $_SESSION['token']),true);
         $planning = $planning['data'];
 

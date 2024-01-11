@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridDay' , 
+      initialView: 'dayGridWeek' , 
       weekends : false ,
       themeSystem: 'bootstrap',
       buttonText : {
           today: false , 
           dayGridMonth: 'mois',
-          dayGridWeek:  'semaine', 
+          dayGridWeek:  'sem', 
           dayGridDay : 'jour'
       },
       headerToolbar : {
@@ -67,6 +67,19 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#time2').text('Au : ' + formatterDateModal(eventClickInfo.event._def.extendedProps.stop));
         $('#infoModal').text(eventClickInfo.event._def.extendedProps.info);
         $('#abs__id').val(eventClickInfo.event._def.extendedProps.id);
+
+        if (eventClickInfo.event._def.extendedProps.id_user == $('#annul_user_id').val()) {
+            var now = new Date();
+            if (eventClickInfo.event._def.extendedProps.stop > now) {
+                $('#annul_abs_id').val(eventClickInfo.event._def.extendedProps.id);
+                $('#annul_forms').removeClass('d-none');
+            }
+            
+        }else{
+
+            $('#annul_forms').addClass('d-none');
+        }
+
         $('#exampleModalToggle').modal('show');
     }
     });
@@ -74,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var array_events =  JSON.parse(document.getElementById('planning').value);
    
     for (const element of array_events) {
-        console.log(element.to__motif);
+        console.log(element);
       if(memeJour(element.to__out , element.to__in) &&  traiterDateBool(element.to__out) ) {
           var temp = {
               id : element.to__id , 
@@ -90,7 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 info : element.to__info , 
                 start : element.to__out , 
                 stop : element.to__in , 
-                id : element.to__id
+                id : element.to__id,
+                id_user : element.to__user
               }
           };
       }else if(!memeJour(element.to__out , element.to__in) && estLendemain(element.to__in , element.to__out ) &&  traiterDateBool(element.to__in)){
@@ -108,7 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 info : element.to__info ,
                 start : element.to__out , 
                 stop : element.to__in , 
-                id : element.to__id
+                id : element.to__id, 
+                id_user : element.to__user
               }
               
           };
@@ -128,7 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 info : element.to__info , 
                 start : element.to__out , 
                 stop : element.to__in , 
-                id : element.to__id
+                id : element.to__id , 
+                id_user : element.to__user
               }
               
           };
@@ -148,7 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 info : element.to__info , 
                 start : element.to__out , 
                 stop : element.to__in , 
-                id : element.to__id
+                id : element.to__id , 
+                id_user : element.to__user
               } 
              
           };
