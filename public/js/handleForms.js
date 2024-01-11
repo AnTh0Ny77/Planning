@@ -187,7 +187,7 @@ $(document).ready(function(){
 					' minutes. Voulez-vous continuer ? Le programme arrondira automatiquement : ' +
 					formattedRoundedEndDate
 				);
-        flatpickr(document.getElementById(date2)).set(formattedRoundedEndDate);
+        
 				$('#postModal').modal('show');
 			}
 		} else {
