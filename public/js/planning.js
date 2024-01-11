@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (eventClickInfo.event._def.extendedProps.id_user == $('#annul_user_id').val()) {
             var now = new Date();
-            if (eventClickInfo.event._def.extendedProps.stop > now) {
+            if (eventClickInfo.event._def.extendedProps.start > now) {
                 $('#annul_abs_id').val(eventClickInfo.event._def.extendedProps.id);
                 $('#annul_forms').removeClass('d-none');
             }
