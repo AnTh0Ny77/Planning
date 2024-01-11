@@ -190,6 +190,7 @@ $(document).ready(function(){
 				$('#postModal').modal('show');
 			}
 		} else {
+      flatpickr(document.getElementById(date2)).set(formattedRoundedEndDate);
 			return true;
 		}
 	}
