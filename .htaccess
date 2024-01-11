@@ -1,6 +1,6 @@
 RewriteEngine On
-RewriteBase /Planning/
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_METHOD} ^(CONNECT|DEBUG|DELETE|MOVE|PUT|GET|POST|TRACE|TRACK)
-RewriteRule ^(.+)$ indexdev.php [QSA,L]
+RewriteRule ^(.+)$ index.php [QSA,L]
