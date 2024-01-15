@@ -23,7 +23,7 @@ jobs:
         fi
 
 	- name: List branches
-  		run: git branch -a
+  	  run: git branch -a
 
     - name: Push changes to master
       if: success() && steps.check_if_file_exists.outputs.return_code == 0
