@@ -93,6 +93,7 @@ class ApiProvider {
 		$base_uri = $config->api->prod;
 		$env_uri = $config->api->env_prod;
 		$client = new Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false) , 'http_errors' => false]);
+
 		try {
 			$response = $client->post($env_uri .'/refresh',  ['json' => ['refresh_token' => $refreshToken]]);
 		} catch (ClientException $exeption){
@@ -115,6 +116,7 @@ class ApiProvider {
 			$response = $client->get($env_uri. '/user' , ['headers' => self::makeHeaders($token) ] );
 			
 		} catch (ClientException $exeption){
+			
 		
 			$response = $exeption->getResponse();
 		}
