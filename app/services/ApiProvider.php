@@ -106,18 +106,15 @@ class ApiProvider {
 	}
 
 	public function getUser($token){
-		$config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		
+		$config = json_decode(file_get_contents(__DIR__ . '/config.json'));
 		$base_uri = $config->api->prod;
 		$env_uri = $config->api->env_prod;
 		$client = new \GuzzleHttp\Client(['base_uri' => $base_uri, 'curl' => array(CURLOPT_SSL_VERIFYPEER => false)]);
 		
 		try {
 			$response = $client->get($env_uri. '/user' , ['headers' => self::makeHeaders($token) ] );
-			
 		} catch (ClientException $exeption){
-			
-		
 			$response = $exeption->getResponse();
 		}
 
@@ -125,9 +122,7 @@ class ApiProvider {
 			'code' => $response->getStatusCode(),
 			'data' => (array) json_decode($response->getBody()->read(16384), TRUE)
 		];
-		
 		return $response;
-
 	}
 
 
