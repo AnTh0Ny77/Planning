@@ -18,8 +18,6 @@ jobs:
         ls -la
         if [ -f ".htaccessDev" ]; then
           echo "htaccess is ok. Merging with master branch."
-          git checkout master
-          git merge integration
         else
           echo "htaccessDev does not exist please check htaccess configuration. No merge needed."
         fi
@@ -27,6 +25,4 @@ jobs:
     - name: Push changes to master
       if: success() && steps.check_if_file_exists.outputs.return_code == 0
       run: |
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
         git push origin master
