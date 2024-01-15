@@ -32,7 +32,7 @@ jobs:
       run: git branch -a
 
     - name: Commit and Push changes
-      uses: ad-m/github-push-action@v1
+      uses: ad-m/github-push-action@v2
       with:
         repo: https://${{ secrets.PAT_TOKEN }}@github.com/AnTh0Ny77/Planning.git
         branch: master
