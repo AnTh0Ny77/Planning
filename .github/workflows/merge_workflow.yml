@@ -18,7 +18,6 @@ jobs:
         ls -la
         if [ -f ".htaccessDev" ]; then
           echo "htaccess is ok. Merging with master branch."
-		  git branch -a
         else
           echo "htaccessDev does not exist please check htaccess configuration. No merge needed."
         fi
