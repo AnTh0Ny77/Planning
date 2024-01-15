@@ -38,3 +38,7 @@ jobs:
       if: success() && steps.check_if_file_exists.outputs.return_code == 0
       run: |
         git push origin integration
+        git fetch origin master:master
+        git checkout master
+        git merge integration
+        git push origin master
