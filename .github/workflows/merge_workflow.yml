@@ -15,6 +15,7 @@ jobs:
 
     - name: Check if htaccessDev exists
       run: |
+        ls -la
         if [ -f ".htaccessDev" ]; then
           echo "htaccess is ok. Merging with master branch."
           git checkout master
