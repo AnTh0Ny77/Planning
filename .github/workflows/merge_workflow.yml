@@ -32,6 +32,9 @@ jobs:
             mv .htaccess .htaccessDev
             mv .htaccessProd .htaccess
             echo "Files renamed. Merging with master branch."
+            git add .htaccess .htaccessDev
+            git commit -m "Rename .htaccess to .htaccessDev and .htaccessProd to .htaccess"
+            git push origin integration
           else
             echo "htaccessDev and htaccessProd do not exist. Please check htaccess configuration. No merge needed."
             exit 1
