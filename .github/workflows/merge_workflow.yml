@@ -1,0 +1,31 @@
+name: Merge if htaccess is ok 
+
+on:
+  push:
+    branches:
+      - integration
+
+jobs:
+  merge_on_file_existence:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check if htaccessDev exists
+      run: |
+        if [ -f ".htaccessDev" ]; then
+          echo "htaccess is ok. Merging with master branch."
+          git checkout master
+          git merge integration
+        else
+          echo "htaccessDev does not exist please check htaccess configuration. No merge needed."
+        fi
+
+    - name: Push changes to master
+      if: success() && steps.check_if_file_exists.outputs.return_code == 0
+      run: |
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git push origin master
