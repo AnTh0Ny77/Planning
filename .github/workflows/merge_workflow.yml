@@ -22,10 +22,8 @@ jobs:
           echo "htaccessDev does not exist please check htaccess configuration. No merge needed."
         fi
 
-	- name: List branches
-  	  run: git branch -a
-
     - name: Push changes to master
       if: success() && steps.check_if_file_exists.outputs.return_code == 0
       run: |
+	  	git branch -a
         git push origin master
