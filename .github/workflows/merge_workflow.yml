@@ -28,4 +28,4 @@ jobs:
     - name: Push changes to master
       if: success() && steps.check_if_file_exists.outputs.return_code == 0
       run: |
-        git push origin master
+        git push origin integration
