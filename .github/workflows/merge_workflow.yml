@@ -28,4 +28,5 @@ jobs:
     - name: Push changes to master
       if: success() && steps.check_if_file_exists.outputs.return_code == 0
       run: |
+        git remote set-url origin https://<AnThONy77>:<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>@github.com/AnTh0Ny77/Planning.git
         git push origin integration
