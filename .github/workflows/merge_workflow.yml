@@ -40,5 +40,5 @@ jobs:
         git push origin integration
         git fetch origin master:master
         git checkout master
-        git merge --allow-unrelated-histories integration
+        git merge --allow-unrelated-histories -X theirs integration 
         git push origin master
