@@ -24,11 +24,18 @@ jobs:
 
     - name: Check if htaccessDev exists
       run: |
-        ls -la
         if [ -f ".htaccessDev" ]; then
           echo "htaccess is ok. Merging with master branch."
         else
-          echo "htaccessDev does not exist please check htaccess configuration. No merge needed."
+          if [ -f ".htaccessProd" ]; then
+            echo "htaccessDev does not exist, but htaccessProd exists. Renaming files."
+            mv .htaccess .htaccessDev
+            mv .htaccessProd .htaccess
+            echo "Files renamed. Merging with master branch."
+          else
+            echo "htaccessDev and htaccessProd do not exist. Please check htaccess configuration. No merge needed."
+            exit 1
+          fi
         fi
 
     - name: List branches
