@@ -8,6 +8,9 @@ on:
 jobs:
   merge_on_file_existence:
     runs-on: ubuntu-latest
+    permissions:                
+      contents: write          
+      pull-requests: write  
 
     steps:
     - name: Checkout code
@@ -30,13 +33,6 @@ jobs:
 
     - name: List branches
       run: git branch -a
-
-    - name: Commit and Push changes
-      uses: ad-m/github-push-action@v2
-      with:
-        repo: https://${{ secrets.PAT_TOKEN }}@github.com/AnTh0Ny77/Planning.git
-        branch: master
-        message: 'Automated commit and push from integration'
 
     - name: Push changes to master
       if: success() && steps.check_if_file_exists.outputs.return_code == 0
