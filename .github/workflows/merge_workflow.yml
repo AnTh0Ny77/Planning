@@ -17,7 +17,7 @@ jobs:
       run: |
           git config --global user.email "anthonybs.pro@gmail.com"
           git config --global user.name "AnThONy77"
-          git remote set-url origin https://${{ secrets.PAT_TOKEN }}@/github.com/AnTh0Ny77/Planning
+          git remote set-url origin https://${{ secrets.PAT_TOKEN }}@/github.com/AnTh0Ny77/Planning.git
 
     - name: Check if htaccessDev exists
       run: |
