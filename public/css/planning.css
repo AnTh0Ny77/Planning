@@ -117,7 +117,7 @@
 
 
 #calendar {
-    height: 200vh !important;
+    
     overflow: scroll; /* Optionnel : pour masquer tout débordement éventuel */
 }
 .fc {
@@ -154,7 +154,7 @@
         margin-top: 12px;
     }
     #calendar {
-        height: 150vh !important; /* Utilisation de !important pour s'assurer que cette règle a la priorité */
+         /* Utilisation de !important pour s'assurer que cette règle a la priorité */
         overflow: scroll; /* Optionnel : pour masquer tout débordement éventuel */
     }
   }
