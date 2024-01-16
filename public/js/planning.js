@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
       initialView: 'dayGridWeek' , 
       weekends : false ,
       themeSystem: 'bootstrap',
+      contentHeight: "auto",
       buttonText : {
           today: false , 
           dayGridMonth: 'mois',
