@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
       initialView: 'dayGridWeek' , 
       weekends : false ,
       themeSystem: 'bootstrap',
+      eventDisplay: 'list-item' , 
       contentHeight: "auto",
       buttonText : {
           today: false , 
@@ -17,9 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 
       displayEventEnd : false ,
       displayEventTime : false ,
-      eventClick: function(eventClickInfo ) {
-        console.log(eventClickInfo.event._def.extendedProps);
-
+      eventClick: function(eventClickInfo){
         $("#autor").text(eventClickInfo.event._def.extendedProps.prenom + " " + eventClickInfo.event._def.extendedProps.nom);
        switch (eventClickInfo.event._def.extendedProps.etat) {
         case 'DEM':
@@ -94,9 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
           var temp = {
               id : element.to__id , 
               title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  , 
-              backgroundColor : returnBackgroundColorMotif(element.to__motif) ,
-              borderColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
+              color : returnBackgroundColorMotif(element.to__motif) ,
+              textColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
               start : traiterDate(element.to__out) , 
+              eventDisplay: 'list-item' , 
               extendedProps: {
                 prenom : element.prenom,
                 nom: element.nom , 
@@ -113,9 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
           var temp = {
               id : element.to__id , 
               title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  , 
-              backgroundColor : returnBackgroundColorMotif(element.to__motif ) ,
-              borderColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
+              color : returnBackgroundColorMotif(element.to__motif ) ,
+              textColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
               start : traiterDate(element.to__out) , 
+              eventDisplay: 'list-item' , 
               extendedProps: {
                 prenom : element.prenom,
                 nom: element.nom , 
@@ -133,10 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
           var temp = {
               id : element.to__id , 
               title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  ,
-              backgroundColor : returnBackgroundColorMotif(element.to__motif ) ,
-              borderColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
+              color : returnBackgroundColorMotif(element.to__motif ) ,
+              textColor : returnBackgroundColorMotifBorder(  element.to__abs_etat) ,  
               start : traiterDate(element.to__out) ,
-              end : traiterDateSortie(ajusterDateFin(element.to__in)) , 
+              end : traiterDateSortie(ajusterDateFin(element.to__in)) ,
+              eventDisplay: 'list-item' ,  
               extendedProps: {
                 prenom : element.prenom,
                 nom: element.nom , 
@@ -148,14 +150,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 id : element.to__id , 
                 id_user : element.to__user
               }
-              
           };
       }else{
           var temp = {
               id : element.to__id , 
               title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  ,
-              backgroundColor : returnBackgroundColorMotif(element.to__motif) ,
-              borderColor : returnBackgroundColorMotifBorder(element.to__abs_etat) ,  
+              color : returnBackgroundColorMotif(element.to__motif) ,
+              textColor : returnBackgroundColorMotifBorder(element.to__abs_etat) ,  
+              eventDisplay: 'list-item' , 
               start : traiterDate(element.to__out) ,
               end : traiterDateSortie(ajusterDateFin(element.to__in)) ,
               extendedProps: {
@@ -351,12 +353,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var date = new Date(dateSQL);
         // Vérifier si l'heure est inférieure à 9h du matin
         if (date.getHours() < 9 || date.getHours() == 9 ) {
-            // Supprimer la précision heure minute seconde
-           
-            // Retourner la nouvelle chaîne au format ISO (YYYY-MM-DD)
             return true
         } else {
-            // Si l'heure n'est pas inférieure à 9h du matin, retourner la date originale
             return false;
         }
     }

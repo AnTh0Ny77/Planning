@@ -201,11 +201,11 @@ $(document).ready(function(){
             $('.select-wrapper').addClass('hidden-debut');
             $('#mal-wrapper').removeClass('hidden-debut');
 
-        }  else if (selectElement.value === 'REC') {
+        }  else if (selectElement.value === 'RCU') {
             $('.select-wrapper').addClass('hidden-debut');
             $('#rec-wrapper').removeClass('hidden-debut');
 
-        } else if (selectElement.value === 'TEL') {
+        } else if (selectElement.value === 'TT') {
             $('.select-wrapper').addClass('hidden-debut');
             $('#tt-wrapper').removeClass('hidden-debut');
 

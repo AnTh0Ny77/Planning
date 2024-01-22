@@ -148,10 +148,9 @@ class FormsController {
                 return $body;
                 break;
             case 'TT':
-                
                 $dateDepart = new DateTime($_POST['TTDate']);
                 $dateRetour = new DateTime($_POST['TTDateR']);
-    
+               
                 if (!empty($_POST['depart8m']) && $_POST['depart8m'] == '12') {
                     $dateDepart->setTime(13, 45, 0);   
                 } else {
