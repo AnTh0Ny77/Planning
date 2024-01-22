@@ -3,14 +3,11 @@
 
 planning pour les employés de recode.fr 
 
-
 ## Systeme
 
 - PHP 7.4 et +
 
 - Apache HTTP Server
-
-
 
 
 ## Installation 
@@ -27,15 +24,12 @@ Installer les dépendances ( à faire depuis la racine du projet )
   composer install
 ```
 
-
-
 ## Fonctionnalités
 
 - Consultation du planning de l'entreprise
 - Demande d'absences
 - Validation/refus des absences par les ayants droits
 - Copies par emails
-
 
 ## Documentation de l API
 
