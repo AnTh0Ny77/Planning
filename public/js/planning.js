@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function()
 			var temp = {
 				id : element.to__id , 
 				title : premiereLettreMajusculeAvecPoint(element.prenom) + element.nom + ' - '+ element.to__motif + ' (' + element.to__out.substring(11,16) + '-' + element.to__in.substring(11,16) + ')', 
-				textColor : returnBackgroundColorMotif(element.to__motif) ,
+				backgroundColor : returnBackgroundColorMotif(element.to__motif) ,
 				borderColor : returnBackgroundColorEtatBorder(  element.to__abs_etat) ,  
 				start : traiterDate(element.to__out) , 
 				extendedProps: {
@@ -398,12 +398,6 @@ document.addEventListener('DOMContentLoaded', function()
 	function returnBackgroundColorMotif(motif){
 		switch (motif)
 		{
-			case 'CP'  : return '#3788D8';
-			case 'MLD' : return '#3788D8';
-			case 'NP'  : return '#3788D8';
-			case 'RCU' : return '#3788D8';
-			case 'INT' : return '#3788D8';
-			case 'TT'  : return '#A2C579';
 			case 'CP'  : return '#3788D8';
 			case 'MLD' : return '#EF9595';
 			case 'NP'  : return '#00B0EE';
