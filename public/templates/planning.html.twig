@@ -1,114 +1,120 @@
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon"  href="public/img/favicon.ico" />
-        <title>planning.recode</title>
-        <link href="public/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="public/css/planning.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    
-    </head>
-    <body style="">
-        <nav class="navbar bg-body-tertiary fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">PLANNING RECODE</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">MENU</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Planning</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="forms">Demandes d'absences</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="logout">Se deconnecter</a>
-                            </li>  
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <main  role="main" class="container-fluid mt-5 container-body">
-            <div class="d-flex" id="global-wrapper">
-                <input type="hidden" id="planning" value="{{planning}}">
-                <div id="calendar-container">
-                    <div id="info" class="info d-flex justify-content-between"> 
-                        <div class=" badge color-container-cp">
-                            Congés
-                        </div>
-                        <div class=" badge color-container-medic">
-                            Maladie
-                        </div>
-                        <div class=" badge color-container-perso">
-                            Inter/TT
-                        </div>
-                        <div class=" badge color-container-autre">
-                            Autre
-                        </div>  
-                    </div>
-                    <div id='calendar'>
-                    </div> 
-                </div>
-            </div>
-        </main>
-      
-        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 class="modal-title fs-5" id="exampleModalToggleLabel">Détails de l'absence</h3>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-body">
-                       <h6 id="autor"></h6>
-                       <p id="status"></p>
-                       <p id="type"></p>
-                       <p id="time"></p>
-                       <p id="time2"></p>
-                       <p id="infoModal"></p>
-                    </div>
-                    <form class="col-8 d-none" id="annul_forms" action="" method="post">
-                        <input type="hidden" name="annul_user_id" id="annul_user_id" value="{{user.data.user__id}}">
-                        <input type="hidden" name="annul_abs_id" id="annul_abs_id" required>
-                            <button type="submit" class="btn  btn-danger">Annuler</button>
-                    </form>
-                </div>
 
-                <div class="modal-footer">
-                    <form class="col-8 " action="" method="post">
-                        <input type="hidden" name="cadre__id" id="cadre__id" value="{{user.data.user__id}}">
-                        <input type="hidden" name="abs__id" id="abs__id" required>
-                        {% if user.data.user__id == 11 or  user.data.user__id == 10 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Planning MyRecode</title>
+	<link rel="icon"       href="public/img/favicon.ico" />
+	<link rel="stylesheet" href="public/css/planning.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="public/fontawesome/css/all.min.css">
+</head>
+
+<body style="">
+{# Menu Burger #}
+	<nav class="navbar bg-body-tertiary fixed-top">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Planning MyRECODE</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasNavbarLabel">MENU</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div class="offcanvas-body">
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Planning</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="forms">Demandes d'absences</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link " aria-current="page" href="logout">Se deconnecter</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+{# Boutons indicateur de couleurs pour activités #}
+	<main  role="main" class="container-fluid mt-5 container-body">
+		<div class="d-flex" id="global-wrapper">
+			<input type="hidden" id="planning" value="{{planning}}">
+			<div id="calendar-container">
+				<div id="info" class="info d-flex justify-content-between"> 
+					<div class=" badge color-container-cp">
+						Congés & Non Payé
+					</div>
+					<div class=" badge color-container-medic">
+						Maladie
+					</div>
+					<div class=" badge color-container-perso">
+						Inter/TT
+					</div>
+					<div class=" badge color-container-autre">
+						Autre
+					</div>  
+				</div>
+				<div id='calendar'>
+				</div> 
+			</div>
+		</div>
+	</main>
+
+{# Modal d'info sur une demande  #}
+	<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title fs-5" id="exampleModalToggleLabel">Détails de l'absence</h3>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<h6 id="autor"></h6>
+					<p id="status"></p>
+					<p id="type"></p>
+					<p id="time"></p>
+					<p id="time2"></p>
+					<p id="infoModal"></p>
+					<form class="col-8 d-none" id="annul_forms" action="" method="post">
+						<input type="hidden" name="annul_user_id" id="annul_user_id" value="{{user.data.user__id}}">
+						<input type="hidden" name="annul_abs_id" id="annul_abs_id" required>
+						<button type="submit" class="btn  btn-danger">Annuler</button>
+					</form>
+				</div>
+
+				<div class="modal-footer">
+					<form class="col-8 " action="" method="post">
+						<input type="hidden" name="cadre__id" id="cadre__id" value="{{user.data.user__id}}">
+						<input type="hidden" name="abs__id" id="abs__id" required>
+						{% if user.data.user__id == 11 or  user.data.user__id == 10 
                             or  user.data.user__id == 14 or  user.data.user__id == 20  or  user.data.user__id == 32 
                             or  user.data.user__id == 56  %}
-                            <div class="my-2">
-                                <label for="exampleInputEmail1" class="form-label">Motif de refus</label>
-                                <input type="text" class="form-control" name="motif" required >
-                            </div>
-                            <div class="my-4">
-                                <button type="submit" class="btn  btn-danger">Refuser</button>
-                            </div>  
-                        {% endif %} 
-                    </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="public/js/index.global.min.js"></script>
-        <script type="text/javascript" src="public/js/planning.js"></script>
-    </body>
+							<div class="my-2">
+								<label for="exampleInputEmail1" class="form-label">Motif de refus</label>
+								<input type="text" class="form-control" name="motif" required >
+							</div>
+							<div class="my-4">
+								<button type="submit" class="btn  btn-danger">Refuser</button>
+							</div>
+						{% endif %} 
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="public/js/index.global.min.js"></script>
+	<script type="text/javascript" src="public/js/planning.js"></script>
+
+</body>
+
 </html>
