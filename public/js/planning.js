@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function()
 			// eventDisplay: 'list-item'
 			var temp = {
 				id : element.to__id , 
-				title : premiereLettreMajusculeAvecPoint(element.prenom) + element.nom + ' - '+ element.to__motif + ' (' + element.to__out.substring(11,16) + '-' + element.to__in.substring(11,16) + ')', 
+				title : premiereLettreMajusculeAvecPoint(element.prenom) + element.nom + ' - '+ stringType(element.to__motif) + ' (' + element.to__out.substring(11,16) + '-' + element.to__in.substring(11,16) + ')', 
 				backgroundColor : returnBackgroundColorMotif(element.to__motif) ,
 				borderColor : returnBackgroundColorEtatBorder(  element.to__abs_etat) ,  
 				start : traiterDate(element.to__out) , 
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function()
 		else if(!memeJour(element.to__out , element.to__in) && estLendemain(element.to__in , element.to__out ) &&  traiterDateBool(element.to__in)){
 		var temp = {
 			id : element.to__id , 
-			title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  , 
+			title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   stringType(element.to__motif) , 
 			backgroundColor : returnBackgroundColorMotif(element.to__motif ) ,
 			borderColor : returnBackgroundColorEtatBorder(  element.to__abs_etat) ,  
 			start : traiterDate(element.to__out) , 
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function()
 	}else if(memeJour(element.to__out , element.to__in) && traiterDateBool(element.to__out) && traiterSortieTardive(element.to__in) ){
 		  var temp = {
 			  id : element.to__id , 
-			  title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  ,
+			  title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +  stringType(element.to__motif)  ,
 			  backgroundColor : returnBackgroundColorMotif(element.to__motif ) ,
 			  borderColor : returnBackgroundColorEtatBorder(  element.to__abs_etat) ,  
 			  start : traiterDate(element.to__out) ,
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function()
 	}else{
 		  var temp = {
 			  id : element.to__id , 
-			  title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   element.to__info  ,
+			  title :  premiereLettreMajusculeAvecPoint(element.prenom)  + element.nom + ' ' +   stringType(element.to__motif)  ,
 			  backgroundColor : returnBackgroundColorMotif(element.to__motif) ,
 			  borderColor : returnBackgroundColorEtatBorder(element.to__abs_etat) ,  
 			  start : traiterDate(element.to__out) ,
