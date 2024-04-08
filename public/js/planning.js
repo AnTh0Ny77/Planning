@@ -56,11 +56,9 @@ document.addEventListener('DOMContentLoaded', function()
 			if (eventClickInfo.event._def.extendedProps.start > now) 
 			{ }
 		}
-		else
-		{
+		else{
 			$('#annul_forms').addClass('d-none');
 		}
-
 		$('#exampleModalToggle').modal('show');
 }
 	});
@@ -79,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function()
 				extendedProps: {
 					prenom : element.prenom,
 					nom: element.nom , 
-					motif: element.to__motif , 
+					motif: stringType(element.to__motif) , 
 					etat: element.to__abs_etat , 
 					info : element.to__info , 
 					start : element.to__out , 
@@ -99,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function()
 			extendedProps: {
 				prenom : element.prenom,
 				nom: element.nom , 
-				motif: element.to__motif , 
+				motif: stringType(element.to__motif) , 
 				etat: element.to__abs_etat , 
 				info : element.to__info ,
 				start : element.to__out , 
@@ -119,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function()
 			  extendedProps: {
 				prenom : element.prenom,
 				nom: element.nom , 
-				motif: element.to__motif , 
+				motif: stringType(element.to__motif) , 
 				etat: element.to__abs_etat , 
 				info : element.to__info , 
 				start : element.to__out , 
@@ -139,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function()
 			  extendedProps: {
 				prenom : element.prenom,
 				nom: element.nom , 
-				motif: element.to__motif , 
+				motif: stringType(element.to__motif), 
 				etat: element.to__abs_etat , 
 				info : element.to__info , 
 				start : element.to__out , 
@@ -151,12 +149,10 @@ document.addEventListener('DOMContentLoaded', function()
 		  };
 	  }
 	  calendar.addEvent(temp);
-	
 	}
    
 	calendar.setOption('locale', 'fr');
 	calendar.render();
-
 
 	function traiterDate(dateSQL) {
 		// Convertir la date SQL en objet Date
@@ -164,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function()
 		// Vérifier si l'heure est inférieure à 9h du matin
 		if (date.getHours() < 9 || date.getHours() == 9 ) {
 			// Supprimer la précision heure minute seconde
-		   
 			// Retourner la nouvelle chaîne au format ISO (YYYY-MM-DD)
 			return date.toISOString().split('T')[0];
 		} else {
@@ -194,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function()
 		  // Sinon, renvoie la date et l'heure
 		  return inputDate.toLocaleDateString('fr-FR', options);
 		}
-	  }
+	}
   
 	function formaterDate(date) {
 		var dateObj;
@@ -236,6 +231,8 @@ document.addEventListener('DOMContentLoaded', function()
 		return date;
 	}
 
+	
+
 
 	function premiereLettreMajusculeAvecPoint(chaine) {
 		// Vérifie si la chaîne est non vide
@@ -249,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function()
 		  // Si la chaîne est vide ou n'est pas une chaîne de caractères, retourne la chaîne originale
 		  return "";
 		}
-	  }
+	}
 
   // Fonction pour convertir le mois de chiffres à toutes lettres
   function moisEnLettres(moisNumerique) {
@@ -273,7 +270,6 @@ document.addEventListener('DOMContentLoaded', function()
 		// Formater l'heure et les minutes
 		var heureMinutesFormat = heures.toString().padStart(2, '0') + 'h ' +
 								 minutes.toString().padStart(2, '0');
-	
 		// Retourner la chaîne formatée
 		return heureMinutesFormat;
 	}
@@ -418,6 +414,19 @@ document.addEventListener('DOMContentLoaded', function()
 			case 'INT' : return '<i class="fa-duotone fa-suitcase"></i>';
 			case 'TT'  : return '<i class="fa-duotone fa-house-laptop"></i>';
 			default    : return '<i class="fa-duotone fa-block-question"></i>';
+		}
+	}
+
+	function stringType(motif){
+		switch (motif)
+		{
+			case 'CP'  : return 'congés payés';
+			case 'MLD' : return 'maladie';
+			case 'NP'  : return 'non payés';
+			case 'RCU' : return 'recupération';
+			case 'INT' : return 'intervention';
+			case 'TT'  : return 'télétravail';
+			default    : return '';
 		}
 	}
 
